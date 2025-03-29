@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Newspaper Advertisement</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            color: #d32f2f;
+        }
+        .back-to-home {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #d32f2f;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .back-to-home:hover {
+            color: #b71c1c;
+        }
+
+        .back-to-home i {
+            margin-right: 8px;
+            color: #d32f2f;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .ad-section {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .ad-section h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .ad-option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .ad-option:last-child {
+            border-bottom: none;
+        }
+
+        .ad-option label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+        }
+
+        .ad-option input[type="checkbox"] {
+            accent-color: #d32f2f;
+        }
+
+        .ad-option .price {
+            font-weight: bold;
+            color: #d32f2f;
+        }
+
+        .ad-option .book-btn {
+            background-color: #d32f2f;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .ad-option .book-btn:hover {
+            background-color: #b71c1c;
+        }
+
+        .total-section {
+            margin-top: 20px;
+            text-align: center;
+            padding: 15px;
+            background-color: #fff3f3;
+            border-radius: 8px;
+        }
+
+        .total-section p {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #d32f2f;
+        }
+
+        Button {
+            background-color: #d32f2f;
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+       Button:hover {
+            background-color: #b71c1c;
+        }
+
+        Button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <a href="{% url 'accounts:date' %}" class="back-to-home">
+        <i class="fas fa-arrow-left"></i> Back
+    </a>
+    <div class="container">
+        <div class="ad-section">
+            <h2>Select a City to Proceed</h2>
+
+            <!-- Select All Editions -->
+            <div class="ad-option">
+                <label>
+                    <input type="checkbox" id="selectAll">
+                    <strong>Select All Editions</strong>
+                </label>
+            </div>
+
+            <!-- City Options -->
+            <div class="ad-option">
+                <label>
+                    <input type="checkbox" name="city" value="Alappuzha" data-price="340">
+                    Alappuzha
+                </label>
+                <span class="price">Rs. 340 / sq.cm</span>
+            </div>
+            <div class="ad-option">
+                <label>
+                    <input type="checkbox" name="city" value="Bangalore" data-price="325">
+                    Bangalore
+                </label>
+                <span class="price">Rs. 325 / sq.cm</span>
+            </div>
+            <div class="ad-option">
+                <label>
+                    <input type="checkbox" name="city" value="Chennai" data-price="325">
+                    Chennai
+                </label>
+                <span class="price">Rs. 325 / sq.cm</span>
+            </div>
+            <div class="ad-option">
+                <label>
+                    <input type="checkbox" name="city" value="Delhi" data-price="325">
+                    Delhi
+                </label>
+                <span class="price">Rs. 325 / sq.cm</span>
+            </div>
+            <div class="ad-option">
+                <label>
+                    <input type="checkbox" name="city" value="Kannur" data-price="325">
+                    Kannur
+                </label>
+                <span class="price">Rs. 325 / sq.cm</span>
+            </div>
+            <div class="ad-option">
+                <label>
+                    <input type="checkbox" name="city" value="Kochi" data-price="830">
+                    Kochi
+                </label>
+                <span class="price">Rs. 830 / sq.cm</span>
+            </div>
+            <div class="ad-option">
+                <label>
+                    <input type="checkbox" name="city" value="Kollam" data-price="360">
+                    Kollam
+                </label>
+                <span class="price">Rs. 360 / sq.cm</span>
+            </div>
+            <div class="ad-option">
+                <label>
+                    <input type="checkbox" name="city" value="Kottayam" data-price="560">
+                    Kottayam
+                </label>
+                <span class="price">Rs. 560 / sq.cm</span>
+            </div>
+            <div class="ad-option">
+                <label>
+                    <input type="checkbox" name="city" value="Malappuram" data-price="340">
+                    Malappuram
+                </label>
+                <span class="price">Rs. 340 / sq.cm</span>
+            </div>
+            <div class="ad-option">
+                <label>
+                    <input type="checkbox" name="city" value="Mumbai" data-price="105">
+                    Mumbai
+                </label>
+                <span class="price">Rs. 105 / sq.cm</span>
+            </div>
+            <div class="ad-option">
+                <label>
+                    <input type="checkbox" name="city" value="Palakkad" data-price="350">
+                    Palakkad
+                </label>
+                <span class="price">Rs. 350 / sq.cm</span>
+            </div>
+            <div class="ad-option">
+                <label>
+                    <input type="checkbox" name="city" value="Pathanamthitta" data-price="370">
+                    Pathanamthitta
+                </label>
+                <span class="price">Rs. 370 / sq.cm</span>
+            </div>
+            <div class="ad-option">
+                <label>
+                    <input type="checkbox" name="city" value="Thrissur" data-price="430">
+                    Thrissur
+                </label>
+                <span class="price">Rs. 430 / sq.cm</span>
+            </div>
+            <div class="ad-option">
+                <label>
+                    <input type="checkbox" name="city" value="Trivandrum" data-price="550">
+                    Trivandrum
+                </label>
+                <span class="price">Rs. 550 / sq.cm</span>
+            </div>
+            <div class="ad-option">
+                <label>
+                    <input type="checkbox" name="city" value="Kozhikode" data-price="390">
+                    Kozhikode
+                </label>
+                <span class="price">Rs. 390 / sq.cm</span>
+            </div>
+        </div>
+
+        <!-- Total Amount and BOOK NOW Button -->
+        <div class="total-section">
+            <p>Total Amount: <strong>Rs. <span id="total">0</span></strong></p>
+            <button class="book-btn" id="bookNowButton">BOOK NOW</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkboxes = document.querySelectorAll('input[name="city"]');
+            const selectAllCheckbox = document.getElementById('selectAll');
+            const totalAmountElement = document.getElementById('total');
+            const bookNowButton = document.getElementById('bookNowButton');
+
+            // Function to update total amount and button state
+            function updateTotalAndButton() {
+                let total = 0;
+                let selectedEditions = [];
+                checkboxes.forEach(function(cb) {
+                    if (cb.checked) {
+                        total += parseInt(cb.getAttribute('data-price'));
+                        selectedEditions.push(cb.value);
+                    }
+                });
+                totalAmountElement.textContent = total;
+
+                // Enable/disable BOOK NOW button
+                if (selectedEditions.length > 0) {
+                    bookNowButton.disabled = false;
+                } else {
+                    bookNowButton.disabled = true;
+                }
+            }
+
+            // Add event listeners to checkboxes
+            checkboxes.forEach(function(checkbox) {
+                checkbox.addEventListener('change', updateTotalAndButton);
+            });
+
+            // Select All Editions functionality
+            selectAllCheckbox.addEventListener('change', function() {
+                checkboxes.forEach(function(checkbox) {
+                    checkbox.checked = selectAllCheckbox.checked;
+                });
+                updateTotalAndButton();
+            });
+
+            // BOOK NOW button click event
+            bookNowButton.addEventListener('click', function() {
+                const selectedEditions = [];
+                checkboxes.forEach(function(checkbox) {
+                    if (checkbox.checked) {
+                        selectedEditions.push(checkbox.value);
+                    }
+                });
+
+                // Save total cost and selected cities to localStorage
+                localStorage.setItem('totalCost', totalAmountElement.textContent);
+                localStorage.setItem('selectedCities', JSON.stringify(selectedEditions));
+
+                // Redirect to the next page
+                window.location.href = "{% url 'accounts:designs' %}";
+            });
+        });
+    </script>
+</body>
+</html>

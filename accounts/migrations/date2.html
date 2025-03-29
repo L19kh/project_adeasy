@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ad Position Selection | AD-EASY</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #f5365c 0%, #ff4040 100%);
+        }
+
+        .premium-card {
+            box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
+            transition: all 0.3s ease;
+        }
+
+        .premium-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(50, 50, 93, 0.15), 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .custom-shape-divider {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+
+        .animate-pulse-slow {
+            animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        .navbar-sticky {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .hero-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        /* Newspaper Layout Styles */
+        .newspaper-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background-color: #f9fafb;
+            padding: 20px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+        }
+
+        .newspaper-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .newspaper-section {
+            flex: 1;
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newspaper-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .newspaper-section.selected {
+            border: 2px solid #f5365c;
+            background-color: #fef2f2;
+        }
+
+        .newspaper-section h4 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .newspaper-section p {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        /* Ad Size Visual Representation */
+        .ad-size-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f3f4f6;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 10px;
+        }
+
+        .ad-size-box {
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+            width: 200px; /* Reduced size */
+            height: 150px; /* Reduced size */
+        }
+
+        .ad-size-box.full-page {
+            background-color: #6b7280; /* Gray color for full page */
+        }
+
+        .ad-size-box.half-page {
+            background: linear-gradient(to bottom, #6b7280 50%, #ffffff 50%); /* Top half gray, bottom half white */
+        }
+
+        .ad-size-box.quarter-page {
+            background-color: #ffffff; /* Full white */
+        }
+
+        .ad-size-box.quarter-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%; /* Top-left quarter */
+            height: 50%; /* Top-left quarter */
+            background-color: #6b7280; /* Gray color */
+        }
+
+        .ad-size-box::after {
+            content: attr(data-size);
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        /* Calendar Styles */
+        .calendar-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .calendar-container td {
+            cursor: pointer;
+            padding: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .calendar-container td.selected {
+            background-color: #f5365c;
+            color: #ffffff;
+            border-radius: 4px;
+        }
+
+        .calendar-container td:hover {
+            background-color: #fef2f2;
+        }
+
+        /* Proceed Button */
+        .proceed-button {
+            background-color: #f5365c;
+            color: #ffffff;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .proceed-button:hover {
+            background-color: #ff4040;
+        }
+
+        .back-to-home {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #fffcfc;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            z-index:1000
+        }
+
+        .back-to-home:hover {
+            color: #ffffff;
+        }
+
+        .back-to-home i {
+            margin-right: 8px;
+            color: #fcf8f8;
+        }
+        .disabled {
+        opacity: 0.5;
+        pointer-events: none;
+        cursor: not-allowed;
+}
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navbar -->
+    <nav class="navbar-sticky p-4 flex justify-between items-center sticky top-0 z-50 shadow-md">
+        <div class="flex items-center">
+            <div class="relative">
+                <h1 class="text-4xl font-bold">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-700">AD-EASY</span>
+                </h1>
+                <div class="absolute -bottom-1 w-full h-1 bg-gradient-to-r from-red-500 to-red-700"></div>
+            </div>
+            <p class="ml-4 text-gray-600 hidden md:block">Premium Advertising Solutions</p>
+        </div>
+        <div class="hidden lg:flex items-center space-x-6">
+            <button onclick="openModal('signinModal')" class="text-gray-800 px-4 hover:text-red-600 font-medium transition-colors duration-300">Sign In</button>
+            <button onclick="openModal('signupModal')" class="text-gray-800 px-4 hover:text-red-600 font-medium transition-colors duration-300">Sign Up</button>
+            <a href="#ad-type" class="text-gray-800 px-4 hover:text-red-600 font-medium transition-colors duration-300">Ad-Type</a>
+            <a href="#ad-categories" class="text-gray-800 px-4 hover:text-red-600 font-medium transition-colors duration-300">Ad Categories</a>
+            <a href="#track-ads" class="text-gray-800 px-4 hover:text-red-600 font-medium transition-colors duration-300">Track Ads</a>
+        </div>
+        <div class="lg:hidden">
+            <button onclick="toggleMobileMenu()" class="text-gray-800 hover:text-red-600 transition duration-300">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden lg:hidden glass-effect p-6 animate__animated animate__fadeIn shadow-lg rounded-b-xl">
+        <div class="flex flex-col space-y-4">
+            <button onclick="openModal('signinModal')" class="text-gray-800 hover:text-red-600 font-medium py-2 transition-colors duration-300">Sign In</button>
+            <button onclick="openModal('signupModal')" class="text-gray-800 hover:text-red-600 font-medium py-2 transition-colors duration-300">Sign Up</button>
+            <a href="#ad-type" class="text-gray-800 hover:text-red-600 font-medium py-2 transition-colors duration-300">Ad-Type</a>
+            <a href="#ad-categories" class="text-gray-800 hover:text-red-600 font-medium py-2 transition-colors duration-300">Ad Categories</a>
+            <a href="#track-ads" class="text-gray-800 hover:text-red-600 font-medium py-2 transition-colors duration-300">Track Ads</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="relative py-32 gradient-bg text-white hero-pattern overflow-hidden">
+        <a href="editions2.html" class="back-to-home">
+            <i class="fas fa-arrow-left"></i> Back
+        </a>
+        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-red-600 to-red-800 opacity-80"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 text-center md:text-left mb-12 md:mb-0">
+                    <h2 class="text-6xl font-bold leading-tight animate__animated animate__fadeInUp">Select Ad Position</h2>
+                    <p class="mt-6 text-xl leading-relaxed animate__animated animate__fadeInUp animate__delay-1s">Choose where your ad will appear in the newspaper.</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-10">
+                <!-- Calendar Section (Left Side) -->
+                <div>
+                    <div class="calendar-container">
+                        <div class="text-center mb-6">
+                            <h2 class="text-2xl font-bold text-gray-900 mb-2">Select Date(s)</h2>
+                            <p class="text-gray-700">Choose the date(s) for your ad to be published.</p>
+                        </div>
+                        <div class="month-navigation flex justify-between items-center mb-6">
+                            <button id="prev-button" onclick="changeMonth(-1)" class="bg-red-600 text-white p-2 rounded-full hover:bg-red-700 transition duration-300">←</button>
+                            <span id="current-month-year" class="text-xl font-bold text-gray-900"></span>
+                            <button id="next-button" onclick="changeMonth(1)" class="bg-red-600 text-white p-2 rounded-full hover:bg-red-700 transition duration-300">→</button>
+                        </div>
+                        <table class="w-full">
+                            <thead>
+                                <tr>
+                                    <th class="py-2 bg-red-600 text-white">Su</th>
+                                    <th class="py-2 bg-red-600 text-white">Mo</th>
+                                    <th class="py-2 bg-red-600 text-white">Tu</th>
+                                    <th class="py-2 bg-red-600 text-white">We</th>
+                                    <th class="py-2 bg-red-600 text-white">Th</th>
+                                    <th class="py-2 bg-red-600 text-white">Fr</th>
+                                    <th class="py-2 bg-red-600 text-white">Sa</th>
+                                </tr>
+                            </thead>
+                            <tbody id="calendar-body" class="text-gray-700">
+                                <!-- Calendar dates will be dynamically generated -->
+                            </tbody>
+                        </table>
+                        <p id="selected-dates" class="mt-4 text-gray-700">Selected Date(s): None</p>
+                        <div class="error-message text-red-600 mt-2" id="date-error" style="display: none;">Please select at least one date.</div>
+                    </div>
+
+                    <!-- Page Positions (Below Calendar) -->
+                    <div class="premium-card bg-white p-8 rounded-2xl mt-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Page Positions</h3>
+                        <div class="newspaper-layout">
+                            <!-- Inner Page Option -->
+                            <div id="inner-page-option" class="newspaper-section" onclick="selectPagePosition('inner-page')">
+                                <h4>Inner Page</h4>
+                                <p>Your ad will publish on any inner page.</p>
+                            </div>
+                            <!-- Extra Premium Option -->
+                            <div id="extra-premium-option" class="newspaper-section" onclick="selectPagePosition('extra-premium')">
+                                <h4>Extra Premium</h4>
+                                <p>Charged. Page position subject to availability.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ad Sizes Section (Right Side) -->
+                <div>
+                    <div class="premium-card bg-white p-8 rounded-2xl">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Ad Sizes</h3>
+                        <div class="newspaper-layout">
+                            <!-- Full Page Option -->
+                            <div class="newspaper-section" onclick="selectAdSize('full-page')">
+                                <h4>Full Page</h4>
+                                <p>Size: 32.9*52.5 cm</p>
+                                <div class="ad-size-visual">
+                                    <div class="ad-size-box full-page" data-size="Full Page"></div>
+                                </div>
+                            </div>
+                            <!-- Half Page Option -->
+                            <div class="newspaper-section" onclick="selectAdSize('half-page')">
+                                <h4>Half Page</h4>
+                                <p>Size: 32.9*25 cm</p>
+                                <div class="ad-size-visual">
+                                    <div class="ad-size-box half-page" data-size="Half Page"></div>
+                                </div>
+                                <!-- Dropdown for Half Page -->
+                                <div id="half-page-dropdown" class="mt-2 hidden">
+                                    <select class="w-full p-2 border rounded" onchange="handleHalfPageSelection(event)">
+                                        <option value="">Select Position</option>
+                                        <option value="top">Top</option>
+                                        <option value="bottom">Bottom</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- Quarter Page Option -->
+                            <div class="newspaper-section" onclick="selectAdSize('quarter-page')">
+                                <h4>Quarter Page</h4>
+                                <p>Size: 16*25 cm</p>
+                                <div class="ad-size-visual">
+                                    <div class="ad-size-box quarter-page" data-size="Quarter Page"></div>
+                                </div>
+                                <!-- Dropdown for Quarter Page -->
+                                <div id="quarter-page-dropdown" class="mt-2 hidden">
+                                    <select class="w-full p-2 border rounded" onchange="handleQuarterPageSelection(event)">
+                                        <option value="">Select Position</option>
+                                        <option value="top-left">Top Left</option>
+                                        <option value="top-right">Top Right</option>
+                                        <option value="bottom-left">Bottom Left</option>
+                                        <option value="bottom-right">Bottom Right</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Total Cost Section -->
+                    <div class="premium-card bg-white p-8 rounded-2xl mt-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Total Cost</h3>
+                        <div id="total-cost" class="text-gray-700">
+                            <p>Total Cost: ₹ <span id="total-amount">0</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Proceed Button -->
+            <div class="text-center mt-10">
+                <button class="proceed-button" onclick="proceed()">Proceed</button>
+            </div>
+        </div>
+    </section>
+<script>
+    // Retrieve the selected column from localStorage
+    const selectedColumn = localStorage.getItem('selectedColumn');
+
+    // Disable the opposite option based on the selected column
+    if (selectedColumn === 'innerPage') {
+        document.getElementById('extra-premium-option').classList.add('disabled');
+    } else if (selectedColumn === 'frontPage') {
+        document.getElementById('inner-page-option').classList.add('disabled');
+    }
+
+    // Retrieve the total cost from localStorage and convert it to a number
+    const totalCostFromFirstPage = parseFloat(localStorage.getItem('totalCost')) || 0;
+    console.log('Total Cost retrieved from localStorage:', totalCostFromFirstPage); // Debug
+
+    // Function to calculate square centimeters based on ad size
+    function calculateSquareCentimeters(size) {
+        const dimensions = {
+            'full-page': { width: 32.9, height: 52.5 },
+            'half-page': { width: 32.9, height: 25 },
+            'quarter-page': { width: 16, height: 25 }
+        };
+
+        const { width, height } = dimensions[size] || { width: 0, height: 0 };
+        return width * height; // Return area in square centimeters
+    }
+
+    // Function to calculate total cost
+    function calculateTotalCost() {
+        const adSize = document.querySelector('.newspaper-section.selected h4')?.textContent.toLowerCase();
+        const selectedDatesCount = selectedDates.length;
+
+        // Define ad size multipliers
+        const sizeMultipliers = {
+            'full page': 1,
+            'half page': 0.5,
+            'quarter page': 0.25
+        };
+
+        // Calculate total cost
+        const sizeMultiplier = sizeMultipliers[adSize] || 0;
+        const squareCentimeters = calculateSquareCentimeters(adSize.replace(' ', '-'));
+        const totalCost = totalCostFromFirstPage * sizeMultiplier * selectedDatesCount * squareCentimeters;
+
+        // Update the total cost display
+        document.getElementById('total-amount').textContent = totalCost.toFixed(2);
+    }
+
+    // Call calculateTotalCost on page load
+    document.addEventListener('DOMContentLoaded', () => {
+        calculateTotalCost();
+    });
+
+    // Update total cost whenever a change occurs
+    document.addEventListener('change', calculateTotalCost);
+    // Function to handle proceed button click
+    function proceed() {
+    if (selectedDates.length === 0) {
+        document.getElementById('date-error').style.display = 'block';
+    } else {
+        // Get the selected ad size
+        const adSize = document.querySelector('.newspaper-section.selected h4')?.textContent;
+
+        // Get the selected position (if applicable)
+        let adPosition = '';
+        if (adSize === 'Half Page') {
+            adPosition = document.querySelector('input[name="half-page-position"]:checked')?.value || '';
+        } else if (adSize === 'Quarter Page') {
+            adPosition = document.querySelector('input[name="quarter-page-position"]:checked')?.value || '';
+        }
+
+        // Calculate total cost
+        const totalCost = parseFloat(document.getElementById('total-amount').textContent);
+
+        // Store selected dates, ad size, position, and total cost in localStorage
+        localStorage.setItem('selectedDates', JSON.stringify(selectedDates));
+        localStorage.setItem('adSize', adSize);
+        localStorage.setItem('adPosition', adPosition);
+        localStorage.setItem('totalCost', totalCost);
+
+        // Redirect to displaypreview.html
+        window.location.href = 'displaypreview.html';
+    }
+}
+
+    // Calendar functionality
+    const today = new Date();
+    let currentMonth = today.getMonth();
+    let currentYear = today.getFullYear();
+
+    const calendarBody = document.getElementById("calendar-body");
+    const selectedDatesDiv = document.getElementById("selected-dates");
+    const currentMonthYear = document.getElementById("current-month-year");
+    const prevButton = document.getElementById("prev-button");
+    const nextButton = document.getElementById("next-button");
+    const dateError = document.getElementById("date-error");
+
+    let selectedDates = [];
+    const maxMonths = 3; // Restrict to 3 months
+    let monthCounter = 0; // Track how many months ahead the user has navigated
+
+    function generateCalendar(month, year) {
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        const firstDay = new Date(year, month, 1).getDay();
+
+        calendarBody.innerHTML = "";
+
+        let row = document.createElement("tr");
+        for (let i = 0; i < firstDay; i++) {
+            row.appendChild(document.createElement("td"));
+        }
+
+        for (let day = 1; day <= daysInMonth; day++) {
+            const cell = document.createElement("td");
+            cell.textContent = day;
+
+            cell.addEventListener("click", () => {
+                const dateKey = `${year}-${month + 1}-${day}`;
+                if (!selectedDates.includes(dateKey)) {
+                    selectedDates.push(dateKey);
+                    cell.classList.add("selected");
+                } else {
+                    selectedDates = selectedDates.filter(d => d !== dateKey);
+                    cell.classList.remove("selected");
+                }
+                updateSelectedDates();
+                calculateTotalCost(); // Recalculate total cost when a date is selected
+            });
+
+            row.appendChild(cell);
+
+            if ((firstDay + day) % 7 === 0 || day === daysInMonth) {
+                calendarBody.appendChild(row);
+                row = document.createElement("tr");
+            }
+        }
+
+        currentMonthYear.textContent = new Date(year, month).toLocaleString('default', { month: 'long', year: 'numeric' });
+
+        // Disable "Next" button if the user has reached the third month
+        if (monthCounter >= maxMonths - 1) {
+            nextButton.disabled = true;
+        } else {
+            nextButton.disabled = false;
+        }
+
+        // Disable "Previous" button if the user is on the current month
+        if (monthCounter <= 0) {
+            prevButton.disabled = true;
+        } else {
+            prevButton.disabled = false;
+        }
+    }
+
+    function changeMonth(offset) {
+        currentMonth += offset;
+        monthCounter += offset;
+
+        if (currentMonth < 0) {
+            currentMonth = 11;
+            currentYear--;
+        } else if (currentMonth > 11) {
+            currentMonth = 0;
+            currentYear++;
+        }
+
+        generateCalendar(currentMonth, currentYear);
+    }
+
+    function updateSelectedDates() {
+        selectedDatesDiv.textContent = `Selected Date(s): ${selectedDates.length > 0 ? selectedDates.join(", ") : "None"}`;
+    }
+
+    // Function to handle ad size selection
+    function selectAdSize(size) {
+        const sections = document.querySelectorAll('.newspaper-section[onclick*="selectAdSize"]');
+        sections.forEach(section => section.classList.remove('selected'));
+        const selectedSection = document.querySelector(`.newspaper-section[onclick*="${size}"]`);
+        selectedSection.classList.add('selected');
+
+        // Hide all dropdowns first
+        document.getElementById('half-page-dropdown').classList.add('hidden');
+        document.getElementById('quarter-page-dropdown').classList.add('hidden');
+
+        // Show the appropriate dropdown
+        if (size === 'half-page') {
+            document.getElementById('half-page-dropdown').classList.remove('hidden');
+        } else if (size === 'quarter-page') {
+            document.getElementById('quarter-page-dropdown').classList.remove('hidden');
+        }
+
+        console.log(`Selected Ad Size: ${size}`);
+        calculateTotalCost(); // Recalculate total cost when an ad size is selected
+    }
+
+    // Function to handle Half Page dropdown selection
+    function handleHalfPageSelection(event) {
+        const selectedPosition = event.target.value;
+        console.log(`Selected Half Page Position: ${selectedPosition}`);
+    }
+
+    // Function to handle Quarter Page dropdown selection
+    function handleQuarterPageSelection(event) {
+        const selectedPosition = event.target.value;
+        console.log(`Selected Quarter Page Position: ${selectedPosition}`);
+    }
+
+    // Initial calendar generation
+    generateCalendar(currentMonth, currentYear);
+</script>
+</body>
+</html>

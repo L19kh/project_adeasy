@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Ad Booking - Ad Details</title>
+    <style>
+               body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px; /* Increased width to accommodate two columns */
+            margin: auto; /* Centers the container */
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #b71c1c;
+            margin-bottom: 20px;
+        }
+
+        .section {
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #777;
+        }
+
+        input[type="text"], select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .two-column-layout {
+            display: flex;
+            gap: 20px; /* Space between the two columns */
+        }
+
+        .ad-details {
+            flex: 2; /* Takes 2/3 of the space */
+        }
+
+        .preview-section {
+            flex: 1; /* Takes 1/3 of the space */
+        }
+
+        .preview-box {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 10px;
+            background-color: #fff;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            width: 200px; /* Fixed width for newspaper-like appearance */
+            min-height: 400px; /* Minimum height for newspaper-like appearance */
+            overflow-y: auto; /* Add scroll if content exceeds height */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for better visibility */
+        }
+
+        .preview-box h3 {
+            color: #b71c1c;
+            margin-bottom: 10px;
+        }
+
+        .word-count {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #777;
+        }
+
+        .word-count.limit-exceeded {
+            color: #b71c1c; /* Red color for exceeding the limit */
+        }
+
+        .error-message {
+            color: #b71c1c;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none; /* Hidden by default */
+        }
+
+        .cost-summary {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f8e5e1; /* Light red from categories page */
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .cost-summary h3 {
+            color: #b71c1c;
+        }
+
+        .cost-summary p {
+            font-size: 14px;
+        }
+
+        .proceed-button {
+            display: block;
+            padding: 10px 15px;
+            background-color: #b71c1c;
+            color: white;
+            text-align: center;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+
+        .proceed-button:hover {
+            background-color: #b71c1c;
+        }
+
+        #selected-dates-display {
+            font-style: italic;
+            color: #777;
+            margin-top: 10px;
+        }
+
+        .note-section {
+            font-size: .9em;
+            color: #b71c1c;
+        }
+
+        h3 {
+            color: #b71c1c;
+        }
+        .error-message {
+            color: #b71c1c;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none; /* Hidden by default */
+        }
+
+        .proceed-button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        .back-to-home {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #d32f2f;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .back-to-home:hover {
+            color: #b71c1c;
+        }
+
+        .back-to-home i {
+            margin-right: 8px;
+            color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <a href="{% url 'accounts:editions' %}" class="back-to-home">
+        <i class="fas fa-arrow-left"></i> Back
+    </a>
+    <h2>Ad Details</h2>
+
+    <div class="section">
+        <h3>Selected Cities</h3>
+        <p id="selected-cities-display">No cities selected.</p>
+    </div>
+
+    <div class="section">
+        <h3>Selected Dates</h3>
+        <p id="selected-dates-display">No dates selected.</p>
+    </div>
+
+    <div class="two-column-layout">
+        <!-- Left Column: Ad Details -->
+        <div class="ad-details">
+            <h3>Ad Details</h3>
+
+            <label for="ad-heading">Ad Heading:</label>
+            <input type="text" id="ad-heading" placeholder="Enter ad heading">
+
+            <label for="language">Select Language:</label>
+            <select id="language">
+                <option value="english">English</option>
+                <option value="malayalam">Malayalam</option>
+                <!-- Add more languages as needed -->
+            </select>
+
+            <label for="ad-content">Ad Content:</label>
+            <textarea id="ad-content" placeholder="Type your ad here..."></textarea>
+            <div class="error-message" id="word-limit-error">Number of words exceeded! Maximum allowed: 90 words.</div>
+
+            <div class="cost-summary">
+                <h3>Cost Summary</h3>
+                <p>Base Cost: <span id="base-cost">Rs. 0</span></p>
+                <p>GST (18%): <span id="gst">Rs. 0</span></p>
+                <p>Total: <span id="total-cost">Rs. 0</span></p>
+            </div>
+
+            <a href="{% url 'accounts:pay' %}" class="proceed-button" id="proceed-button">Proceed</a>
+            <p class="note-section">Note:- Kindly give appropriate spacing between each word. If not, your ad will not be accepted.</p>
+        </div>
+
+        <!-- Right Column: Preview Box -->
+        <div class="preview-section">
+            <h3>Ad Preview</h3>
+            <div class="preview-box">
+                <p id="ad-preview-content">No content to preview.</p>
+            </div>
+
+            <!-- Word Count and Character Count -->
+            <div class="word-count" id="word-count-display">
+                <p>No. of Word(s) Used: <span id="word-count">0</span>/90</p>
+                <p>Characters Used: <span id="char-count">0</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Retrieve selected dates from localStorage
+        const selectedDates = JSON.parse(localStorage.getItem('selectedDates')) || [];
+
+        // Display the selected dates
+        const selectedDatesDisplay = document.getElementById('selected-dates-display');
+        if (selectedDates && selectedDates.length > 0) {
+            selectedDatesDisplay.textContent = `Selected Dates: ${selectedDates.join(', ')}`;
+        } else {
+            selectedDatesDisplay.textContent = 'No dates selected.';
+        }
+
+        // Retrieve total cost and selected cities from localStorage
+        const totalCost = localStorage.getItem('totalCost');
+        const selectedCities = JSON.parse(localStorage.getItem('selectedCities'));
+
+        // Display the selected cities
+        const selectedCitiesDisplay = document.getElementById('selected-cities-display');
+        if (selectedCities && selectedCities.length > 0) {
+            selectedCitiesDisplay.textContent = `Selected Cities: ${selectedCities.join(', ')}`;
+        } else {
+            selectedCitiesDisplay.textContent = 'No cities selected.';
+        }
+
+        // Get references to elements
+        const adContentInput = document.getElementById('ad-content');
+        const baseCostDisplay = document.getElementById('base-cost');
+        const gstDisplay = document.getElementById('gst');
+        const totalCostDisplay = document.getElementById('total-cost');
+        const wordCountDisplay = document.getElementById('word-count');
+        const charCountDisplay = document.getElementById('char-count');
+        const wordLimitError = document.getElementById('word-limit-error');
+        const proceedButton = document.getElementById('proceed-button');
+        const adPreviewContent = document.getElementById('ad-preview-content');
+
+        // Constants
+        const gstRate = 0.18; // GST rate (18%)
+        const additionalWordCost = 170; // Rs. 170 per word after 10 words
+        const initialBaseCost = parseFloat(totalCost) || 0; // Base cost from the city selection page
+        const maxWords = 90; // Maximum allowed words
+
+        // Function to calculate costs and update UI
+        function calculateCosts() {
+            const text = adContentInput.value;
+            const words = text.trim().split(/\s+/).filter(word => word.length > 0).length;
+            const chars = text.length;
+
+            // Update word and character count display
+            wordCountDisplay.textContent = words;
+            charCountDisplay.textContent = chars;
+
+            // Update the preview box
+            adPreviewContent.textContent = text;
+
+            // Check if word limit is exceeded
+            if (words > maxWords) {
+                wordLimitError.style.display = "block"; // Show error message
+                proceedButton.disabled = true; // Disable Proceed button
+            } else {
+                wordLimitError.style.display = "none"; // Hide error message
+                proceedButton.disabled = false; // Enable Proceed button
+            }
+
+            // Calculate base cost
+            let baseCost = initialBaseCost;
+            if (words > 10) {
+                baseCost += (words - 10) * additionalWordCost;
+            }
+
+            // Calculate GST and total cost
+            const gstAmount = baseCost * gstRate;
+            const totalAmount = baseCost + gstAmount;
+
+            // Display the costs
+            baseCostDisplay.textContent = `Rs. ${baseCost.toFixed(2)}`;
+            gstDisplay.textContent = `Rs. ${gstAmount.toFixed(2)}`;
+            totalCostDisplay.textContent = `Rs. ${totalAmount.toFixed(2)}`;
+        }
+
+        // Add event listener to ad content input
+        adContentInput.addEventListener('input', calculateCosts);
+
+        // Calculate costs initially
+        calculateCosts();
+    });
+</script>
+</body>
+</html>

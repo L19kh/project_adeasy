@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Ads | Full Page Ads</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&display=swap');
+       
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+       
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+       
+        .gradient-bg {
+            background: linear-gradient(135deg, #f5365c 0%, #ff4040 100%);
+        }
+       
+        .premium-card {
+            box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
+            transition: all 0.3s ease;
+        }
+       
+        .premium-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(50, 50, 93, 0.15), 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+       
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+       
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+       
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+       
+        .custom-shape-divider {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+       
+        .animate-pulse-slow {
+            animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+       
+        .navbar-sticky {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+       
+        .hero-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navbar -->
+    <nav class="navbar-sticky p-4 flex justify-between items-center sticky top-0 z-50 shadow-md">
+        <div class="flex items-center">
+            <div class="relative">
+                <h1 class="text-4xl font-bold">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-700">AD-EASY</span>
+                </h1>
+                <div class="absolute -bottom-1 w-full h-1 bg-gradient-to-r from-red-500 to-red-700"></div>
+            </div>
+            <p class="ml-4 text-gray-600 hidden md:block">Premium Advertising Solutions</p>
+        </div>
+        <div class="hidden lg:flex items-center space-x-6">
+            <button onclick="openModal('signinModal')" class="text-gray-800 px-4 hover:text-red-600 font-medium transition-colors duration-300">Sign In</button>
+            <button onclick="openModal('signupModal')" class="text-gray-800 px-4 hover:text-red-600 font-medium transition-colors duration-300">Sign Up</button>
+            <a href="#ad-categories" class="text-gray-800 px-4 hover:text-red-600 font-medium transition-colors duration-300">Ad Categories</a>
+            <a href="#track-ads" class="text-gray-800 px-4 hover:text-red-600 font-medium transition-colors duration-300">Track Ads</a>
+        </div>
+        <div class="lg:hidden">
+            <button onclick="toggleMobileMenu()" class="text-gray-800 hover:text-red-600 transition duration-300">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden lg:hidden glass-effect p-6 animate__animated animate__fadeIn shadow-lg rounded-b-xl">
+        <div class="flex flex-col space-y-4">
+            <button onclick="openModal('signinModal')" class="text-gray-800 hover:text-red-600 font-medium py-2 transition-colors duration-300">Sign In</button>
+            <button onclick="openModal('signupModal')" class="text-gray-800 hover:text-red-600 font-medium py-2 transition-colors duration-300">Sign Up</button>
+            <a href="#ad-categories" class="text-gray-800 hover:text-red-600 font-medium py-2 transition-colors duration-300">Ad Categories</a>
+            <a href="#track-ads" class="text-gray-800 hover:text-red-600 font-medium py-2 transition-colors duration-300">Track Ads</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="relative py-32 gradient-bg text-white hero-pattern overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-red-600 to-red-800 opacity-80"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 text-center md:text-left mb-12 md:mb-0">
+                    <h2 class="text-6xl font-bold leading-tight animate__animated animate__fadeInUp">Display Full Page Ads</h2>
+                    <p class="mt-6 text-xl leading-relaxed animate__animated animate__fadeInUp animate__delay-1s">Choose from a variety of categories to display your full-page ads.</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Ad Categories Section -->
+    <section id="ad-categories" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Ad Categories</h2>
+                <p class="text-xl text-gray-700">Select a category to display your full-page ad.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-10">
+                <!-- Retail -->
+                <div class="premium-card bg-white p-8 rounded-2xl">
+                    <div class="h-48 bg-red-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-shopping-cart text-6xl text-red-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Retail</h3>
+                    <p class="text-gray-700">Promote retail products, discounts, and sales.</p>
+                    <ul class="mt-4 space-y-2">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Product Sales</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Discount Offers</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Retail Promotions</li>
+                    </ul>
+                    <a href="{% url 'accounts:States2' %}" class="mt-6 inline-block text-red-600 hover:text-red-800 hover:underline font-medium">Post Retail Ad</a>
+                </div>
+
+                <!-- Obituary -->
+                <div class="premium-card bg-white p-8 rounded-2xl">
+                    <div class="h-48 bg-red-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-cross text-6xl text-red-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Obituary</h3>
+                    <p class="text-gray-700">Publish obituaries and memorial notices.</p>
+                    <ul class="mt-4 space-y-2">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Memorial Notices</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Condolence Messages</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Funeral Announcements</li>
+                    </ul>
+                    <a href="{% url 'accounts:States2' %}" class="mt-6 inline-block text-red-600 hover:text-red-800 hover:underline font-medium">Post Obituary</a>
+                </div>
+                <!-- Marriage Bureau -->
+                <div class="premium-card bg-white p-8 rounded-2xl">
+                    <div class="h-48 bg-red-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-handshake text-6xl text-red-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Marriage Bureau</h3>
+                    <p class="text-gray-700">Connect with marriage bureaus and matchmaking services.</p>
+                    <ul class="mt-4 space-y-2">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Matchmaking Services</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Marriage Proposals</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Wedding Planning</li>
+                    </ul>
+                    <a href="{% url 'accounts:States2' %}" class="mt-6 inline-block text-red-600 hover:text-red-800 hover:underline font-medium">Post Marriage Bureau Ad</a>
+                </div>
+
+                <!-- Education -->
+                <div class="premium-card bg-white p-8 rounded-2xl">
+                    <div class="h-48 bg-red-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-graduation-cap text-6xl text-red-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Education</h3>
+                    <p class="text-gray-700">Promote educational institutions, courses, and training programs.</p>
+                    <ul class="mt-4 space-y-2">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>School Admissions</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>College Programs</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Online Courses</li>
+                    </ul>
+                    <a href="{% url 'accounts:States2' %}" class="mt-6 inline-block text-red-600 hover:text-red-800 hover:underline font-medium">Post Education Ad</a>
+                </div>
+
+                <!-- Remembrance -->
+                <div class="premium-card bg-white p-8 rounded-2xl">
+                    <div class="h-48 bg-red-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-cross text-6xl text-red-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Remembrance</h3>
+                    <p class="text-gray-700">Publish remembrance notices and memorials.</p>
+                    <ul class="mt-4 space-y-2">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Memorial Notices</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Tribute Messages</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Anniversary Notices</li>
+                    </ul>
+                    <a href="{% url 'accounts:States2' %}" class="mt-6 inline-block text-red-600 hover:text-red-800 hover:underline font-medium">Post Remembrance Ad</a>
+                </div>
+
+                <!-- Custom -->
+                <div class="premium-card bg-white p-8 rounded-2xl">
+                    <div class="h-48 bg-red-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-pen text-6xl text-red-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Custom</h3>
+                    <p class="text-gray-700">Create a custom full-page ad tailored to your specific needs.</p>
+                    <ul class="mt-4 space-y-2">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Custom Design</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Flexible Layout</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Personalized Content</li>
+                    </ul>
+                    <a href="{% url 'accounts:States2' %}" class="mt-6 inline-block text-red-600 hover:text-red-800 hover:underline font-medium">Post Custom Ad</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // JavaScript for modal and mobile menu functionality
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.remove('hidden');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+        }
+
+        function switchModal(fromModalId, toModalId) {
+            closeModal(fromModalId);
+            openModal(toModalId);
+        }
+
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        }      
+    </script>
+</body>
+</html>

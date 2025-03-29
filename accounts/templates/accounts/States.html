@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select State - AD-EASY</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <style>
+        /* Base styles for all state cards */
+        .state-card {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .state-card h3, .state-card p {
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9);
+        }
+        
+        .state-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.7);
+            z-index: 1;
+        }
+        
+        .state-card-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="container mx-auto px-4 py-20">
+        <!-- Back Button -->
+            <a href="{% url 'accounts:home' %}" class="text-red-600 hover:text-red-800 hover:underline font-medium mb-8 inline-block">
+            <i class="fas fa-arrow-left mr-2"></i> Back to Home
+        </a>
+
+        <!-- Page Title -->
+        <h2 class="text-4xl font-bold text-gray-900 mb-8 text-center">Select Your State</h2>
+
+        <!-- Search Bar -->
+        <div class="max-w-md mx-auto mb-12">
+            <input type="text" id="searchInput" class="w-full border border-gray-300 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent transition duration-300" placeholder="Search for a state...">
+        </div>
+
+        <!-- State Grid -->
+        <div id="stateGrid" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          
+            <a href="{% url 'accounts:newspapers' %}" class="state-card premium-card p-6 rounded-2xl text-center hover:shadow-lg transition-shadow duration-300 animate__animated animate__fadeInUp" data-region="south">
+                <img src="https://lh5.googleusercontent.com/p/AF1QipOSapB92Pzyo7zTV6kYWRjABLZRskGoisJqiahp=w1080-h624-n-k-no" alt="Andhra Pradesh" class="state-card-bg">
+                <h3 class="text-2xl font-bold text-gray-900">Andhra Pradesh</h3>
+                <p class="text-gray-700 mt-2">Known for its rich culture, temples, and coastal cuisine.</p>
+            </a>
+
+            <a href="{% url 'accounts:newspapers' %}" class="state-card premium-card p-6 rounded-2xl text-center hover:shadow-lg transition-shadow duration-300 animate__animated animate__fadeInUp">
+                <img src="https://lh5.googleusercontent.com/p/AF1QipMDzwTkq9YgDXl7V2bYPjF2Ry5jqTz5bDdoHlDA=w1080-h624-n-k-no" alt="Arunachal Pradesh" class="state-card-bg">
+                <h3 class="text-2xl font-bold text-gray-900">Arunachal Pradesh</h3>
+                <p class="text-gray-700 mt-2">Land of the Rising Sun in India.</p>
+            </a>
+
+            <a href="{% url 'accounts:newspapers' %}" class="state-card premium-card p-6 rounded-2xl text-center hover:shadow-lg transition-shadow duration-300 animate__animated animate__fadeInUp">
+                <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcSMfb1l6UAmLjbD0Y_yrQk4e8Mj1J7gP_UsC5jDhfc1pVzKMhbUEZjuRiB7q40vJwoA6xIy4vdiINttBssgsCob3jlM6qEWUylK_8SD9A" alt="Assam" class="state-card-bg">
+                <h3 class="text-2xl font-bold text-gray-900">Assam</h3>
+                <p class="text-gray-700 mt-2">Renowned for its tea gardens and Kaziranga National Park.</p>
+            </a>
+            
+            <a href="{% url 'accounts:newspapers' %}" class="state-card premium-card p-6 rounded-2xl text-center hover:shadow-lg transition-shadow duration-300 animate__animated animate__fadeInUp">
+                <img src="https://lh6.googleusercontent.com/proxy/8xXeNZuLU-ZgF8SpOffguic82EC_UJXWeISEIuS3y48a95RxaluwZ4MxmSSxtN7-uXeo93zoSSZfVomMuVU_nX7z9olw0-haunueDhh5VV_IEU1JMckqBJMWEon8-NLKbKPenSVrfNd78xNuU2FnhZTwU4U=w1080-h624-n-k-no" alt="Bihar" class="state-card-bg">
+                <h3 class="text-2xl font-bold text-gray-900">Bihar</h3>
+                <p class="text-gray-700 mt-2">Birthplace of Buddhism and home to Nalanda University.</p>
+            </a>
+
+            <a href="{% url 'accounts:newspapers' %}" class="state-card premium-card p-6 rounded-2xl text-center hover:shadow-lg transition-shadow duration-300 animate__animated animate__fadeInUp">
+                <img src="https://lh5.googleusercontent.com/p/AF1QipOyd_JnlUkG3I2MtloIq3RFKCBU2OQhcCzmDpf5=w1080-h624-n-k-no" alt="Chhattisgarh" class="state-card-bg">
+                <h3 class="text-2xl font-bold text-gray-900">Chhattisgarh</h3>
+                <p class="text-gray-700 mt-2">Known for its tribal culture and waterfalls.</p>
+            </a>
+
+            <a href="{% url 'accounts:newspapers' %}" class="state-card premium-card p-6 rounded-2xl text-center hover:shadow-lg transition-shadow duration-300 animate__animated animate__fadeInUp">
+                <img src="https://lh5.googleusercontent.com/p/AF1QipM2zARk2pKNRxnuPFHtGhRux8luz1CQSZsNJwAa=w1080-h624-n-k-no" alt="Goa" class="state-card-bg">
+                <h3 class="text-2xl font-bold text-gray-900">Goa</h3>
+                <p class="text-gray-700 mt-2">Famous for its beaches and Portuguese heritage.</p>
+            </a>
+          
+            <a href="{% url 'accounts:newspapers' %}" class="state-card premium-card p-6 rounded-2xl text-center hover:shadow-lg transition-shadow duration-300 animate__animated animate__fadeInUp">
+                <img src="https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcROE9nrDDDwDC5kjzq-vAFXHHrXJC1CwDrQETAAyWvBvGzYDoU1LAtHfSR1H0VuFZRDqHEMET9qe0dzq4QRR4cNoAXqqSjThEeHMRtGlw" alt="Gujarat" class="state-card-bg">
+                <h3 class="text-2xl font-bold text-gray-900">Gujarat</h3>
+                <p class="text-gray-700 mt-2">Known for its vibrant festivals, Rann of Kutch, and Gandhi's birthplace.</p>
+            </a>
+
+            <a href="{% url 'accounts:newspapers' %}" class="state-card premium-card p-6 rounded-2xl text-center hover:shadow-lg transition-shadow duration-300 animate__animated animate__fadeInUp">
+                <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcQCEZt8mHImex5y4lPzXbqcJzn5_us5-I7oBdjAB8SYrhcbO_BcExMPKyvWCL-pdftCg_Rf8R6p915DYuICvdeRruPaRRJ0WdgE0Bsoufo" alt="Haryana" class="state-card-bg">
+                <h3 class="text-2xl font-bold text-gray-900">Haryana</h3>
+                <p class="text-gray-700 mt-2">Known for its rich history, wrestling, and dairy farming.</p>
+            </a>
+
+            <a href="{% url 'accounts:newspapers' %}" class="state-card premium-card p-6 rounded-2xl text-center hover:shadow-lg transition-shadow duration-300 animate__animated animate__fadeInUp">
+                <img src="https://lh5.googleusercontent.com/p/AF1QipNHtJfTPBfujX798LpgB5HCcrITHY3OM1bcoHZG=w540-h312-n-k-no" alt="Himachal Pradesh" class="state-card-bg">
+                <h3 class="text-2xl font-bold text-gray-900">Himachal Pradesh</h3>
+                <p class="text-gray-700 mt-2">Famous for its hill stations and adventure sports.</p>
+            </a>
+
+            <a href="{% url 'accounts:newspapers' %}" class="state-card premium-card p-6 rounded-2xl text-center hover:shadow-lg transition-shadow duration-300 animate__animated animate__fadeInUp">
+                <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcThWNVPVYnYt93rgE6lAr3nR9GxRfgFCiQS0kFJSz58McjBLhSu1hZ8Cdr3q-z3W1p14HUHD4ovhYPZuGmI8Gg5vvKjxq9h1zPRuCImtUY" alt="Jharkhand" class="state-card-bg">
+                <h3 class="text-2xl font-bold text-gray-900">Jharkhand</h3>
+                <p class="text-gray-700 mt-2">Land of forests and tribal heritage.</p>
+            </a>
+
+            <a href="{% url 'accounts:newspapers' %}" class="state-card premium-card p-6 rounded-2xl text-center hover:shadow-lg transition-shadow duration-300 animate__animated animate__fadeInUp">
+                <img src="https://lh5.googleusercontent.com/p/AF1QipMD5bQz97b3JAQgk6UwXIlX3xC5igaJyQUpMbvp=w1080-h624-n-k-no" alt="Karnataka" class="state-card-bg">
+                <h3 class="text-2xl font-bold text-gray-900">Karnataka</h3>
+                <p class="text-gray-700 mt-2">Famous for its IT hubs, Mysore silk, and historical monuments.</p>
+            </a>
+            
+            <a href="{% url 'accounts:kerala' %}" class="state-card premium-card p-6 rounded-2xl text-center hover:shadow-lg transition-shadow duration-300 animate__animated animate__fadeInUp" data-region="south">
+                <img src="https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcQk5sjkzMytZSSUtoJ3R_jdnbudOO_eklwW1XZDPKGtZ6rm1rjQhc-a2nmQD3V2iW0QYAuvEsLFm7vNMeSVuv0yHqbRDsAYBdOcIWZhkQ" alt="Kerala" class="state-card-bg">
+                <h3 class="text-2xl font-bold text-gray-900">Kerala</h3>
+                <p class="text-gray-700 mt-2">Famous for its backwaters, beaches, and Ayurvedic treatments.</p>
+            </a>
+
+            <a href="{% url 'accounts:newspapers' %}" class="state-card premium-card p-6 rounded-2xl text-center hover:shadow-lg transition-shadow duration-300 animate__animated animate__fadeInUp">
+                <img src="https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcTYxoJ89WvMhO-bhpYjTB0ald-saIrBRyNGsdukWO-l_Ij8rl61LsnjkgA70uk5bgouMV-0H7IhGOWdzelYFhPrfn3qsi0tgD76lXxIXA" alt="Maharashtra" class="state-card-bg">
+                <h3 class="text-2xl font-bold text-gray-900">Maharashtra</h3>
+                <p class="text-gray-700 mt-2">Home to Bollywood, Mumbai, and the Ajanta-Ellora caves.</p>
+            </a>
+
+            <a href="{% url 'accounts:newspapers' %}" class="state-card premium-card p-6 rounded-2xl text-center hover:shadow-lg transition-shadow duration-300 animate__animated animate__fadeInUp">
+                <img src="https://lh5.googleusercontent.com/p/AF1QipOiwTNrhQdgL4Jcwg0O-97AO81v_EYwiDIxYLiM=w540-h312-n-k-no" alt="Madhya Pradesh" class="state-card-bg">
+                <h3 class="text-2xl font-bold text-gray-900">Madhya Pradesh</h3>
+                <p class="text-gray-700 mt-2">Heart of India, known for wildlife and heritage sites.</p>
+            </a>
+
+            <a href="{% url 'accounts:newspapers' %}" class="state-card premium-card p-6 rounded-2xl text-center hover:shadow-lg transition-shadow duration-300 animate__animated animate__fadeInUp">
+                <img src="https://lh5.googleusercontent.com/p/AF1QipObGOIWLgEjFkqenwQjSYxbWYWFfvCBFJYkSpTK=w1080-h624-n-k-no" alt="Manipur" class="state-card-bg">
+                <h3 class="text-2xl font-bold text-gray-900">Manipur</h3>
+                <p class="text-gray-700 mt-2">Known for its culture and floating Loktak Lake.</p>
+            </a>
+
+            <a href="{% url 'accounts:newspapers' %}" class="state-card premium-card p-6 rounded-2xl text-center hover:shadow-lg transition-shadow duration-300 animate__animated animate__fadeInUp">
+                <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcTXcHvpO3i3c0nbaGPtSkaUHPYwx8QFBmOLqDuHPEr0gH79MDTdZlxJhAmvCyElwvbcat10E2tm1vlhRokVzsEJPMq3CSO48UMxMUTEXQ" alt="Meghalaya" class="state-card-bg">
+                <h3 class="text-2xl font-bold text-gray-900">Meghalaya</h3>
+                <p class="text-gray-700 mt-2">Abode of Clouds, famous for living root bridges.</p>
+            </a>
+
+            <a href="{% url 'accounts:newspapers' %}" class="state-card premium-card p-6 rounded-2xl text-center hover:shadow-lg transition-shadow duration-300 animate__animated animate__fadeInUp">
+                <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcSwTSo7l0joDHhrbl2W6pWAVWHUoLowpVxO97jsGZcjta6PQub5ixJo3LqHFBU5K21m5QMUerRUkAiVRFpan6Zy_A3C-HJ5aHTderSoNo8" alt="Mizoram" class="state-card-bg">
+                <h3 class="text-2xl font-bold text-gray-900">Mizoram</h3>
+                <p class="text-gray-700 mt-2">Land of rolling hills and vibrant culture.</p>
+            </a>
+            
+            <a href="{% url 'accounts:newspapers' %}" class="state-card premium-card p-6 rounded-2xl text-center hover:shadow-lg transition-shadow duration-300 animate__animated animate__fadeInUp">
+                <img src="https://lh5.googleusercontent.com/p/AF1QipOWkBH3RP2E_2bA0PseWX1fGmfnMVS4EelK97m1=w1080-h624-n-k-no" alt="Nagaland" class="state-card-bg">
+                <h3 class="text-2xl font-bold text-gray-900">Nagaland</h3>
+                <p class="text-gray-700 mt-2">Known for its unique tribes and Hornbill Festival.</p>
+            </a>
+
+            <a href="{% url 'accounts:newspapers' %}" class="state-card premium-card p-6 rounded-2xl text-center hover:shadow-lg transition-shadow duration-300 animate__animated animate__fadeInUp">
+                <img src="https://lh5.googleusercontent.com/p/AF1QipOhXa3i9TjaptAT5FUQvqZoYNBLEERKD8XlqE_Q=w1080-h624-n-k-no" alt="Odisha" class="state-card-bg">
+                <h3 class="text-2xl font-bold text-gray-900">Odisha</h3>
+                <p class="text-gray-700 mt-2">Famous for Konark Sun Temple and Chilika Lake.</p>
+            </a>
+
+            <a href="{% url 'accounts:newspapers' %}" class="state-card premium-card p-6 rounded-2xl text-center hover:shadow-lg transition-shadow duration-300 animate__animated animate__fadeInUp" >
+                <img src="https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcQ7vtlvkTVD41lLvCIX8Hw1QjfXrdTbM3uBC3ExQcIDgjo4eegsGoJ1iUXzj4pI13aK_jOol3ukWObBFLN6OBF8a_V5msUCV9AXqulDaQ" alt="Punjab" class="state-card-bg">
+                <h3 class="text-2xl font-bold text-gray-900">Punjab</h3>
+                <p class="text-gray-700 mt-2">Famous for its agriculture, Bhangra dance, and Golden Temple.</p>
+            </a>
+
+            <a href="{% url 'accounts:newspapers' %}" class="state-card premium-card p-6 rounded-2xl text-center hover:shadow-lg transition-shadow duration-300 animate__animated animate__fadeInUp">
+                <img src="https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcRmyly5_ZEmIz0W_CbxWZKszoBlOs-z5c-bXMWxArAXPHlkWIvZ15LzlH1C1eIxPJlJexh6nhILKut95BlcR7xxbE5C2mD9ZdNvzXmgVg" alt="Rajasthan" class="state-card-bg">
+                <h3 class="text-2xl font-bold text-gray-900">Rajasthan</h3>
+                <p class="text-gray-700 mt-2">Famous for its deserts, forts, and royal heritage.</p>
+            </a>
+
+            <a href="{% url 'accounts:newspapers' %}" class="state-card premium-card p-6 rounded-2xl text-center hover:shadow-lg transition-shadow duration-300 animate__animated animate__fadeInUp">
+                <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcTmcEXvaDJ4XUH5yzgbxcW-l_7E3xTzaUAShb_BGj0uHnPklDWGHVf0Hpmnu5GgGhGJn-ohdJchac_57zOg6aTtHeMW2B-WjI1qUBGQLg" alt="Sikkim" class="state-card-bg">
+                <h3 class="text-2xl font-bold text-gray-900">Sikkim</h3>
+                <p class="text-gray-700 mt-2">Land of Kanchenjunga and organic farming.</p>
+            </a>
+
+            <a href="{% url 'accounts:newspapers' %}" class="state-card premium-card p-6 rounded-2xl text-center hover:shadow-lg transition-shadow duration-300 animate__animated animate__fadeInUp">
+                <img src="https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcRJZU4umn6Wa8ZxyIL4UnG0bpWlHMcdGmU_2R4M5qRESxem4aodS_kPfxNuIlynloChshkU1I-JUCKvmM36LD_9plA1Cfjajnw2hyAsfQ" alt="Tamil Nadu" class="state-card-bg">
+                <h3 class="text-2xl font-bold text-gray-900">Tamil Nadu</h3>
+                <p class="text-gray-700 mt-2">Known for its Dravidian-style temples, classical dance, and filter coffee.</p>
+            </a>
+
+            <a href="{% url 'accounts:newspapers' %}" class="state-card premium-card p-6 rounded-2xl text-center hover:shadow-lg transition-shadow duration-300 animate__animated animate__fadeInUp">
+                <img src="https://lh5.googleusercontent.com/p/AF1QipNsLydgRMF16i3UtER21TKNdQ-l01ZcIyv3MxGR=w1080-h624-n-k-no" alt="Tripura" class="state-card-bg">
+                <h3 class="text-2xl font-bold text-gray-900">Tripura</h3>
+                <p class="text-gray-700 mt-2">Famous for its palaces and tribal culture.</p>
+            </a>
+
+            <a href="{% url 'accounts:newspapers' %}" class="state-card premium-card p-6 rounded-2xl text-center hover:shadow-lg transition-shadow duration-300 animate__animated animate__fadeInUp">
+                <img src="https://lh5.googleusercontent.com/p/AF1QipNEhBrVxLTHb4CM3bzMbymPA1ILDadX-9Db93Y=w1080-h624-n-k-no" alt="Telangana" class="state-card-bg">
+                <h3 class="text-2xl font-bold text-gray-900">Telangana</h3>
+                <p class="text-gray-700 mt-2">Known for its historic Charminar and IT hub Hyderabad.</p>
+            </a>
+            
+            <a href="{% url 'accounts:newspapers' %}" class="state-card premium-card p-6 rounded-2xl text-center hover:shadow-lg transition-shadow duration-300 animate__animated animate__fadeInUp">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Taj_Mahal_%28Edited%29.jpeg/500px-Taj_Mahal_%28Edited%29.jpeg" alt="Uttar Pradesh" class="state-card-bg">
+                <h3 class="text-2xl font-bold text-gray-900">Uttar Pradesh</h3>
+                <p class="text-gray-700 mt-2">Home to the Taj Mahal, Varanasi, and rich cultural history.</p>
+            </a>
+
+            <a href="{% url 'accounts:newspapers' %}" class="state-card premium-card p-6 rounded-2xl text-center hover:shadow-lg transition-shadow duration-300 animate__animated animate__fadeInUp">
+                <img src="https://lh5.googleusercontent.com/p/AF1QipNS-oPN-cUDnY8geVAQNJKPgSvjbWayyGexSdLq=w1080-h624-n-k-no" alt="Uttarakhand" class="state-card-bg">
+                <h3 class="text-2xl font-bold text-gray-900">Uttarakhand</h3>
+                <p class="text-gray-700 mt-2">Land of the Himalayas, yoga, and pilgrimage sites.</p>
+            </a>
+
+            <a href="{% url 'accounts:newspapers' %}" class="state-card premium-card p-6 rounded-2xl text-center hover:shadow-lg transition-shadow duration-300 animate__animated animate__fadeInUp">
+                <img src="https://lh5.googleusercontent.com/p/AF1QipNsIVE7E2eQ_MI9RFNeE9i96IK8fTY8RtX41tDX=w1080-h624-n-k-no" alt="West Bengal" class="state-card-bg">
+                <h3 class="text-2xl font-bold text-gray-900">West Bengal</h3>
+                <p class="text-gray-700 mt-2">Known for Durga Puja, literature, and the Sundarbans.</p>
+            </a>
+            
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for search functionality
+        document.getElementById('searchInput').addEventListener('input', function () {
+            const searchTerm = this.value.toLowerCase();
+            const states = document.querySelectorAll('.state-card');
+
+            states.forEach(state => {
+                const stateName = state.querySelector('h3').textContent.toLowerCase();
+                if (stateName.includes(searchTerm)) {
+                    state.style.display = 'block';
+                } else {
+                    state.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AD-EASY | Payment</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        .card-input:focus + .card-input-icon {
+            color: #EF4444;
+        }
+        
+        .payment-card {
+            background: linear-gradient(45deg, #f3f4f6 0%, #e5e7eb 100%);
+        }
+        
+        .ad-preview-image {
+            max-width: 100%;
+            max-height: 150px;
+            object-fit: contain;
+            margin: 0 auto 10px;
+            display: block;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+        }
+        
+        .summary-box {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: #fff;
+        }
+        
+        .summary-title {
+            font-weight: 600;
+            color: #4a5568;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        
+        .summary-label {
+            color: #718096;
+        }
+        
+        .summary-value {
+            font-weight: 500;
+            color: #2d3748;
+        }
+        
+        .processing-spinner {
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Header -->
+    <header class="bg-white shadow-sm py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <h1 class="text-2xl font-bold text-red-600">AD-EASY</h1>
+                <span class="ml-2 text-gray-600 hidden md:inline">Premium Advertising Solutions</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span class="text-gray-700"><i class="fas fa-phone-alt mr-2"></i> Support: 1800-123-4567</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Progress Steps -->
+    <div class="container mx-auto px-4 py-8">
+        <div class="flex justify-between items-center max-w-3xl mx-auto">
+            <div class="flex flex-col items-center">
+                <div class="w-10 h-10 rounded-full bg-red-600 text-white flex items-center justify-center">
+                    <i class="fas fa-check"></i>
+                </div>
+                <span class="mt-2 text-sm font-medium text-gray-700">Ad Details</span>
+            </div>
+            <div class="h-1 flex-1 bg-gray-200 mx-2"></div>
+            <div class="flex flex-col items-center">
+                <div class="w-10 h-10 rounded-full bg-red-600 text-white flex items-center justify-center">
+                    2
+                </div>
+                <span class="mt-2 text-sm font-medium text-gray-700">Payment</span>
+            </div>
+            <div class="h-1 flex-1 bg-gray-200 mx-2"></div>
+            <div class="flex flex-col items-center">
+                <div class="w-10 h-10 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center">
+                    3
+                </div>
+                <span class="mt-2 text-sm font-medium text-gray-400">Confirmation</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 pb-12">
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Payment Form -->
+            <div class="lg:w-2/3">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="p-6 border-b">
+                        <h2 class="text-2xl font-bold text-gray-800">Payment Information</h2>
+                    </div>
+                    
+                    <!-- Payment Methods Tabs -->
+                    <div class="border-b">
+                        <div class="flex">
+                            <button class="py-3 px-6 font-medium text-red-600 border-b-2 border-red-600">
+                                <i class="far fa-credit-card mr-2"></i> Credit/Debit Card
+                            </button>
+                            <button class="py-3 px-6 font-medium text-gray-600">
+                                <i class="fab fa-paypal mr-2"></i> PayPal
+                            </button>
+                            <button class="py-3 px-6 font-medium text-gray-600">
+                                <i class="fas fa-university mr-2"></i> Bank Transfer
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Card Payment Form -->
+                    <form id="paymentForm" class="p-6">
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-medium mb-2">Card Number</label>
+                            <div class="relative">
+                                <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent card-input" 
+                                       placeholder="1234 5678 9012 3456" maxlength="19" required>
+                                <div class="absolute right-3 top-3 text-gray-400 card-input-icon">
+                                    <i class="fab fa-cc-visa"></i>
+                                    <i class="fab fa-cc-mastercard ml-1"></i>
+                                    <i class="fab fa-cc-amex ml-1"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">Expiration Date</label>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent" required>
+                                        <option value="">Month</option>
+                                        <option>01</option>
+                                        <option>02</option>
+                                        <option>03</option>
+                                        <option>04</option>
+                                        <option>05</option>
+                                        <option>06</option>
+                                        <option>07</option>
+                                        <option>08</option>
+                                        <option>09</option>
+                                        <option>10</option>
+                                        <option>11</option>
+                                        <option>12</option>
+                                    </select>
+                                    <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent" required>
+                                        <option value="">Year</option>
+                                        <option>2023</option>
+                                        <option>2024</option>
+                                        <option>2025</option>
+                                        <option>2026</option>
+                                        <option>2027</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">Security Code</label>
+                                <div class="relative">
+                                    <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent" 
+                                           placeholder="CVC" maxlength="4" required>
+                                    <div class="absolute right-3 top-3 text-gray-400">
+                                        <i class="fas fa-question-circle" title="3 or 4 digit code on back of card"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-medium mb-2">Cardholder Name</label>
+                            <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent" 
+                                   placeholder="Name on card" required>
+                        </div>
+                        
+                        <div class="flex items-center mb-6">
+                            <input type="checkbox" id="saveCard" class="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded">
+                            <label for="saveCard" class="ml-2 block text-gray-700">Save card for future payments</label>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300 flex items-center justify-center" id="payButton">
+                            <span id="button-text">Pay Now</span>
+                            <svg id="button-spinner" class="hidden w-5 h-5 ml-2 text-white animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Security Info -->
+                <div class="mt-6 bg-white rounded-lg shadow-md p-6">
+                    <div class="flex items-center">
+                        <div class="text-green-500 mr-3">
+                            <i class="fas fa-lock fa-2x"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-800">Secure Payment</h3>
+                            <p class="text-gray-600 text-sm">Your payment information is encrypted and secure. We don't store your credit card details.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Order Summary -->
+            <div class="lg:w-1/3">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden sticky top-4">
+                    <div class="p-6 border-b">
+                        <h2 class="text-2xl font-bold text-gray-800">Order Summary</h2>
+                    </div>
+                    
+                    <div class="p-6">
+                        <div class="summary-box">
+                            <h3 class="summary-title">Advertisement Preview</h3>
+                            <img id="summary-image" class="ad-preview-image" style="display: none;">
+                            <div id="summary-text" class="text-gray-700"></div>
+                        </div>
+                        
+                        <div class="summary-box">
+                            <h3 class="summary-title">Advertisement Details</h3>
+                            <div class="summary-item">
+                                <span class="summary-label">Cities:</span>
+                                <span class="summary-value" id="summary-cities">Loading...</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label">Dates:</span>
+                                <span class="summary-value" id="summary-dates">Loading...</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label">Ad Size:</span>
+                                <span class="summary-value" id="summary-size">Loading...</span>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-box">
+                            <h3 class="summary-title">Pricing</h3>
+                            <div class="summary-item">
+                                <span class="summary-label">Base Cost:</span>
+                                <span class="summary-value" id="summary-basecost">Loading...</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label">GST (18%):</span>
+                                <span class="summary-value" id="summary-gst">Loading...</span>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-box bg-red-50 border-red-100">
+                            <div class="summary-item">
+                                <span class="summary-label font-bold">Total:</span>
+                                <span class="summary-value font-bold text-red-600 text-lg" id="summary-total">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-xl font-bold mb-4">AD-EASY</h3>
+                    <p class="text-gray-400">Premium newspaper advertising solutions for businesses and individuals.</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+                    <div>
+                        <h4 class="font-bold mb-4">Company</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-gray-400 hover:text-white">About Us</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white">Careers</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold mb-4">Support</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-gray-400 hover:text-white">Help Center</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white">Terms of Service</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold mb-4">Connect</h4>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>© 2023 AD-EASY. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Payment Processing Modal -->
+    <div id="processingModal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+        <div class="bg-white rounded-lg p-8 max-w-md w-full text-center">
+            <div class="processing-spinner rounded-full h-16 w-16 border-t-4 border-b-4 border-red-600 mx-auto mb-6"></div>
+            <h3 class="text-xl font-bold text-gray-800 mb-2">Processing Payment</h3>
+            <p class="text-gray-600 mb-6">Please wait while we process your payment. Do not refresh or close this page.</p>
+            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                <div class="bg-red-600 h-2.5 rounded-full animate-pulse" style="width: 45%"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Retrieve all data from localStorage
+            const selectedCities = JSON.parse(localStorage.getItem('selectedCities')) || [];
+            const selectedDates = JSON.parse(localStorage.getItem('selectedDates')) || [];
+            const adWidth = localStorage.getItem('ad-width') || '4';
+            const adHeight = localStorage.getItem('ad-height') || '4';
+            const adText = localStorage.getItem('ad-text') || '';
+            const adFile = localStorage.getItem('ad-file');
+            const baseCost = parseFloat(localStorage.getItem('baseCost')) || 0;
+            const gst = parseFloat(localStorage.getItem('gst')) || 0;
+            const totalCost = parseFloat(localStorage.getItem('totalCost')) || 0;
+            
+            // Update order summary
+            document.getElementById('summary-cities').textContent = selectedCities.join(', ') || 'Not selected';
+            document.getElementById('summary-dates').textContent = selectedDates.join(', ') || 'Not selected';
+            document.getElementById('summary-size').textContent = `${adWidth} cm × ${adHeight} cm`;
+            document.getElementById('summary-basecost').textContent = `₹${baseCost.toFixed(2)}`;
+            document.getElementById('summary-gst').textContent = `₹${gst.toFixed(2)}`;
+            document.getElementById('summary-total').textContent = `₹${totalCost.toFixed(2)}`;
+            
+            // Update ad preview
+            const summaryText = document.getElementById('summary-text');
+            const summaryImage = document.getElementById('summary-image');
+            
+            summaryText.innerHTML = adText || 'No text content';
+            
+            if (adFile) {
+                summaryImage.src = adFile;
+                summaryImage.style.display = 'block';
+            }
+            
+            // Update pay button
+            document.getElementById('payButton').innerHTML = `<span id="button-text">Pay ₹${totalCost.toFixed(2)}</span>
+                <svg id="button-spinner" class="hidden w-5 h-5 ml-2 text-white animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>`;
+
+            // Format card number input
+            document.querySelector('.card-input').addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\s+/g, '');
+                if (value.length > 0) {
+                    value = value.match(new RegExp('.{1,4}', 'g')).join(' ');
+                }
+                e.target.value = value;
+                
+                // Change card icon based on card type
+                const cardIcon = document.querySelector('.card-input-icon');
+                if (/^4/.test(value)) {
+                    cardIcon.innerHTML = '<i class="fab fa-cc-visa"></i>';
+                } else if (/^5[1-5]/.test(value)) {
+                    cardIcon.innerHTML = '<i class="fab fa-cc-mastercard"></i>';
+                } else if (/^3[47]/.test(value)) {
+                    cardIcon.innerHTML = '<i class="fab fa-cc-amex"></i>';
+                } else {
+                    cardIcon.innerHTML = '<i class="fab fa-cc-visa"></i><i class="fab fa-cc-mastercard ml-1"></i><i class="fab fa-cc-amex ml-1"></i>';
+                }
+            });
+
+            // Handle form submission
+            document.getElementById('paymentForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Show loading state on button
+                document.getElementById('button-text').textContent = 'Processing...';
+                document.getElementById('button-spinner').classList.remove('hidden');
+                
+                // Show processing modal
+                document.getElementById('processingModal').classList.remove('hidden');
+                
+                // Prepare payment data
+                const paymentData = {
+                    cities: selectedCities,
+                    dates: selectedDates,
+                    width: adWidth,
+                    height: adHeight,
+                    text: adText,
+                    image: adFile ? true : false,
+                    baseCost: baseCost,
+                    gst: gst,
+                    total: totalCost,
+                    paymentMethod: 'credit_card',
+                    timestamp: new Date().toISOString()
+                };
+                
+                // For demo, simulate payment processing
+                setTimeout(function() {
+                    localStorage.setItem('paymentData', JSON.stringify(paymentData));
+                    window.location.href = "{% url 'accounts:confirmation' %}";
+                }, 3000);
+            });
+        });
+    </script>
+</body>
+</html>

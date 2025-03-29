@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .rating-star {
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .rating-star:hover {
+            transform: scale(1.2);
+        }
+        
+        .feedback-card {
+            background: linear-gradient(45deg, #f3f4f6 0%, #e5e7eb 100%);
+        }
+        
+        .bill-item {
+            border-bottom: 1px dashed #e5e7eb;
+        }
+        
+        .back-to-home {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #d32f2f;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .back-to-home:hover {
+            color: #b71c1c;
+        }
+
+        .back-to-home i {
+            margin-right: 8px;
+            color: #d32f2f;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Firebase Initialization -->
+    <script>
+        // Firebase configuration 
+        const firebaseConfig = {
+            apiKey: "AIzaSyBkV1zj2VQt9eMTlBAUHsb4v34Vj5uuuaw",
+            authDomain: "adeasy-9346b.firebaseapp.com",
+            projectId: "adeasy-9346b",
+            storageBucket: "adeasy-9346b.appspot.com",
+            messagingSenderId: "156272328671",
+            appId: "1:156272328671:web:07e084de514e8e87b94e6a",
+            measurementId: "G-NZPZ3K8DM9"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const auth = firebase.auth();
+    </script>
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm py-4 relative">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <h1 class="text-2xl font-bold text-red-600">AD-EASY</h1>
+                <span class="ml-2 text-gray-600 hidden md:inline">Premium Advertising Solutions</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span class="text-gray-700"><i class="fas fa-phone-alt mr-2"></i> Support: 1800-123-4567</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Progress Steps -->
+    <div class="container mx-auto px-4 py-8">
+        <div class="flex justify-between items-center max-w-3xl mx-auto">
+            <div class="flex flex-col items-center">
+                <div class="w-10 h-10 rounded-full bg-red-600 text-white flex items-center justify-center">
+                    <i class="fas fa-check"></i>
+                </div>
+                <span class="mt-2 text-sm font-medium text-gray-700">Ad Details</span>
+            </div>
+            <div class="h-1 flex-1 bg-gray-200 mx-2"></div>
+            <div class="flex flex-col items-center">
+                <div class="w-10 h-10 rounded-full bg-red-600 text-white flex items-center justify-center">
+                    <i class="fas fa-check"></i>
+                </div>
+                <span class="mt-2 text-sm font-medium text-gray-700">Payment</span>
+            </div>
+            <div class="h-1 flex-1 bg-gray-200 mx-2"></div>
+            <div class="flex flex-col items-center">
+                <div class="w-10 h-10 rounded-full bg-red-600 text-white flex items-center justify-center">
+                    3
+                </div>
+                <span class="mt-2 text-sm font-medium text-gray-700">Feedback</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Feedback Form -->
+            <div class="lg:w-2/3">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Share Your Experience</h2>
+                    
+                    <div class="mb-8">
+                        <h3 class="text-lg font-medium text-gray-700 mb-4">How would you rate your experience with AD-EASY?</h3>
+                        <div class="flex justify-center space-x-2 mb-2" id="ratingStars">
+                            <i class="fas fa-star rating-star text-3xl text-gray-300" data-rating="1"></i>
+                            <i class="fas fa-star rating-star text-3xl text-gray-300" data-rating="2"></i>
+                            <i class="fas fa-star rating-star text-3xl text-gray-300" data-rating="3"></i>
+                            <i class="fas fa-star rating-star text-3xl text-gray-300" data-rating="4"></i>
+                            <i class="fas fa-star rating-star text-3xl text-gray-300" data-rating="5"></i>
+                        </div>
+                        <div class="text-center text-sm text-gray-500">
+                            <span id="ratingText">Tap to rate</span>
+                        </div>
+                        <input type="hidden" id="selectedRating" name="rating" value="0">
+                    </div>
+                    
+                    <form id="feedbackForm">
+                        <div class="mb-6">
+                            <label for="feedbackMessage" class="block text-gray-700 font-medium mb-2">Your Feedback</label>
+                            <textarea id="feedbackMessage" name="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent" placeholder="Tell us about your experience..."></textarea>
+                        </div>
+                        
+                        <div class="flex items-center mb-6">
+                            <input type="checkbox" id="contactMe" name="contactMe" class="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded">
+                            <label for="contactMe" class="ml-2 block text-gray-700">You may contact me about this feedback</label>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300">
+                            Submit Feedback
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Thank You Message (Hidden Initially) -->
+                <div id="thankYouMessage" class="hidden mt-6 bg-white rounded-lg shadow-md p-6 text-center">
+                    <div class="text-green-500 text-5xl mb-4">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Thank You for Your Feedback!</h3>
+                    <p class="text-gray-600 mb-6">We truly appreciate you taking the time to share your experience with us.</p>
+                    <button id="downloadBillBtn" class="bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-6 rounded-lg transition duration-300 inline-flex items-center">
+                        <i class="fas fa-download mr-2"></i> Download Your Bill
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Order Summary & Bill -->
+            <div class="lg:w-1/3">
+                <div class="bg-white rounded-lg shadow-md p-6 sticky top-4">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Your Advertisement Bill</h2>
+                    
+                    <div class="mb-6 p-4 bg-gray-50 rounded-lg">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-gray-600">Order ID:</span>
+                            <span class="font-medium" id="bill-orderid">AD-789456</span>
+                        </div>
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-gray-600">Date:</span>
+                            <span class="font-medium" id="bill-date">Loading...</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">Status:</span>
+                            <span class="px-2 py-1 bg-green-100 text-green-800 text-xs font-medium rounded">Completed</span>
+                        </div>
+                    </div>
+                    
+                    <div class="border-b pb-4 mb-4">
+                        <h3 class="font-medium text-gray-700 mb-3">Advertisement Details</h3>
+                        <div class="bill-item flex justify-between mb-2">
+                            <span class="text-gray-600">Newspaper:</span>
+                            <span class="font-medium" id="bill-newspaper">Loading...</span>
+                        </div>
+                        <div class="bill-item flex justify-between mb-2">
+                            <span class="text-gray-600">Edition:</span>
+                            <span class="font-medium" id="bill-cities">Loading...</span>
+                        </div>
+                        <div class="bill-item flex justify-between mb-2">
+                            <span class="text-gray-600">Publication Date:</span>
+                            <span class="font-medium" id="bill-dates">Loading...</span>
+                        </div>
+                        <div class="bill-item flex justify-between mb-2">
+                            <span class="text-gray-600">Word Count:</span>
+                            <span class="font-medium" id="bill-wordcount">Loading...</span>
+                        </div>
+                    </div>
+                    
+                    <div class="border-b pb-4 mb-4">
+                        <h3 class="font-medium text-gray-700 mb-3">Billing Summary</h3>
+                        <div class="bill-item flex justify-between mb-2">
+                            <span class="text-gray-600">Base Cost:</span>
+                            <span class="font-medium" id="bill-basecost">Loading...</span>
+                        </div>
+                        <div class="bill-item flex justify-between mb-2">
+                            <span class="text-gray-600">Additional Words:</span>
+                            <span class="font-medium" id="bill-extrawords">Loading...</span>
+                        </div>
+                        <div class="bill-item flex justify-between mb-2">
+                            <span class="text-gray-600">Tax (18% GST):</span>
+                            <span class="font-medium" id="bill-gst">Loading...</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <div class="flex justify-between text-lg font-bold">
+                            <span>Total Amount Paid:</span>
+                            <span id="bill-total">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-xl font-bold mb-4">AD-EASY</h3>
+                    <p class="text-gray-400">Premium newspaper advertising solutions for businesses and individuals.</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+                    <div>
+                        <h4 class="font-bold mb-4">Company</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-gray-400 hover:text-white">About Us</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white">Careers</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold mb-4">Support</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-gray-400 hover:text-white">Help Center</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white">Terms of Service</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold mb-4">Connect</h4>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>© 2023 AD-EASY. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Retrieve data from localStorage (same as payment page)
+            const selectedCities = JSON.parse(localStorage.getItem('selectedCities')) || [];
+            const selectedDates = JSON.parse(localStorage.getItem('selectedDates')) || [];
+            const adContent = localStorage.getItem('adContent') || '';
+            const adHeading = localStorage.getItem('adHeading') || '';
+            const language = localStorage.getItem('language') || 'english';
+            const baseCost = parseFloat(localStorage.getItem('baseCost')) || 0;
+            const gst = parseFloat(localStorage.getItem('gst')) || 0;
+            const totalCost = parseFloat(localStorage.getItem('totalCost')) || 0;
+            const wordCount = parseInt(localStorage.getItem('wordCount')) || 0;
+            
+            // Calculate additional costs
+            const additionalWordCost = 170;
+            const extraWords = Math.max(0, wordCount - 10);
+            const extraCost = extraWords * additionalWordCost;
+            
+            // Generate random order ID
+            const orderId = 'AD-' + Math.floor(100000 + Math.random() * 900000);
+            
+            // Update bill information
+            document.getElementById('bill-orderid').textContent = orderId;
+            document.getElementById('bill-date').textContent = new Date().toLocaleDateString('en-IN');
+            document.getElementById('bill-newspaper').textContent = 'Malayala Manorama';
+            document.getElementById('bill-cities').textContent = selectedCities.join(', ') || 'Not selected';
+            document.getElementById('bill-dates').textContent = selectedDates.join(', ') || 'Not selected';
+            document.getElementById('bill-wordcount').textContent = `${wordCount} words (${extraWords} extra)`;
+            document.getElementById('bill-basecost').textContent = `₹${baseCost.toFixed(2)}`;
+            document.getElementById('bill-extrawords').textContent = `₹${extraCost.toFixed(2)}`;
+            document.getElementById('bill-gst').textContent = `₹${gst.toFixed(2)}`;
+            document.getElementById('bill-total').textContent = `₹${totalCost.toFixed(2)}`;
+            
+            // Rating system
+            const stars = document.querySelectorAll('.rating-star');
+            const ratingText = document.getElementById('ratingText');
+            const ratingInput = document.getElementById('selectedRating');
+            
+            stars.forEach(star => {
+                star.addEventListener('click', function() {
+                    const rating = parseInt(this.getAttribute('data-rating'));
+                    ratingInput.value = rating;
+                    
+                    // Update stars display
+                    stars.forEach((s, i) => {
+                        if (i < rating) {
+                            s.classList.remove('text-gray-300');
+                            s.classList.add('text-yellow-400');
+                        } else {
+                            s.classList.remove('text-yellow-400');
+                            s.classList.add('text-gray-300');
+                        }
+                    });
+                    
+                    // Update rating text
+                    const ratingMessages = [
+                        "",
+                        "Poor",
+                        "Fair",
+                        "Good",
+                        "Very Good",
+                        "Excellent"
+                    ];
+                    ratingText.textContent = ratingMessages[rating];
+                });
+            });
+            
+            // Form submission
+            document.getElementById('feedbackForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                // Get current user
+                const user = auth.currentUser;
+                if (!user) {
+                    alert('Please sign in to submit feedback.');
+                    return;
+                }
+                
+                // Get form data
+                const feedbackData = {
+                    userId: user.uid,
+                    userEmail: user.email,
+                    orderId: orderId,
+                    rating: parseInt(ratingInput.value),
+                    message: document.getElementById('feedbackMessage').value,
+                    contactMe: document.getElementById('contactMe').checked,
+                    adDetails: {
+                        newspaper: 'Malayala Manorama',
+                        cities: selectedCities,
+                        dates: selectedDates,
+                        wordCount: wordCount,
+                        baseCost: baseCost,
+                        extraCost: extraCost,
+                        gst: gst,
+                        totalCost: totalCost
+                    },
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                };
+                
+                try {
+                    // Save to Firestore
+                    await db.collection('feedback').add(feedbackData);
+                    
+                    // Show thank you message
+                    document.getElementById('feedbackForm').style.display = 'none';
+                    document.getElementById('thankYouMessage').style.display = 'block';
+                    
+                } catch (error) {
+                    console.error('Error submitting feedback:', error);
+                    alert('There was an error submitting your feedback. Please try again.');
+                }
+            });
+            
+            // Bill download button
+            document.getElementById('downloadBillBtn').addEventListener('click', function() {
+                // Create bill content
+                const billContent = `
+                    AD-EASY - Advertisement Bill
+                    ----------------------------------
+                    Order ID: ${orderId}
+                    Date: ${new Date().toLocaleDateString('en-IN')}
+                    
+                    Newspaper: Malayala Manorama
+                    Edition: ${selectedCities.join(', ')}
+                    Publication Date: ${selectedDates.join(', ')}
+                    Word Count: ${wordCount} words (${extraWords} extra)
+                    
+                    Billing Summary:
+                    Base Cost: ₹${baseCost.toFixed(2)}
+                    Additional Words: ₹${extraCost.toFixed(2)}
+                    Tax (18% GST): ₹${gst.toFixed(2)}
+                    ----------------------------------
+                    Total Amount Paid: ₹${totalCost.toFixed(2)}
+                    
+                    Thank you for your business!
+                `;
+                
+                // Create download link
+                const blob = new Blob([billContent], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `AD-EASY-Bill-${orderId}.txt`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            });
+        });
+    </script>
+</body>
+</html>

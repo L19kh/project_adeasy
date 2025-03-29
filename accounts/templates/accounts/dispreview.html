@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Display Ad Details | AD-EASY</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #b71c1c;
+            margin-bottom: 20px;
+        }
+
+        .section {
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #777;
+        }
+
+        input[type="text"], select, textarea, input[type="file"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .two-column-layout {
+            display: flex;
+            gap: 20px;
+        }
+
+        .ad-details {
+            flex: 2;
+        }
+
+        .preview-section {
+            flex: 1;
+        }
+
+        .preview-box {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 10px;
+            background-color: #fff;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            width: 200px;
+            min-height: 400px;
+            overflow-y: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .preview-box h3 {
+            color: #b71c1c;
+            margin-bottom: 10px;
+        }
+
+        .cost-summary {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f8e5e1;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .cost-summary h3 {
+            color: #b71c1c;
+        }
+
+        .cost-summary p {
+            font-size: 14px;
+        }
+
+        .proceed-button {
+            display: block;
+            padding: 10px 15px;
+            background-color: #b71c1c;
+            color: white;
+            text-align: center;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+
+        .proceed-button:hover {
+            background-color: #b71c1c;
+        }
+
+        .back-to-home {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #d32f2f;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .back-to-home:hover {
+            color: #b71c1c;
+        }
+
+        .back-to-home i {
+            margin-right: 8px;
+            color: #d32f2f;
+        }
+
+        .upload-message {
+            color: #b71c1c;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .upload-message.success {
+            color: #4CAF50;
+        }
+
+        .upload-message.error {
+            color: #b71c1c;
+        }
+
+        .position-options {
+            display: none; /* Hidden by default */
+            margin-top: 10px;
+        }
+
+        .position-options label {
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <a href="{% url 'accounts:date2' %}" class="back-to-home">
+        <i class="fas fa-arrow-left"></i> Back
+    </a>
+    <h2>Display Ad Details</h2>
+
+    <!-- Selected Dates Section -->
+    <div class="section">
+        <h3>Selected Dates</h3>
+        <p id="selected-dates-display">No dates selected.</p>
+    </div>
+
+    <!-- Ad Size Section -->
+    <div class="section">
+        <h3>Ad Size</h3>
+        <p id="ad-size-display">No ad size selected.</p>
+    </div>
+
+    <!-- Ad Position Section -->
+    <div class="section">
+        <h3>Ad Position</h3>
+        <p id="ad-position-display">No ad position selected.</p>
+        <!-- Position Options (Dynamic) -->
+        <div id="position-options" class="position-options">
+            <!-- Options for Half Page -->
+            <div id="half-page-options">
+                <label><input type="radio" name="half-page-position" value="top"> Top</label>
+                <label><input type="radio" name="half-page-position" value="bottom"> Bottom</label>
+            </div>
+            <!-- Options for Quarter Page -->
+            <div id="quarter-page-options">
+                <label><input type="radio" name="quarter-page-position" value="top-left"> Top-Left</label>
+                <label><input type="radio" name="quarter-page-position" value="top-right"> Top-Right</label>
+                <label><input type="radio" name="quarter-page-position" value="bottom-left"> Bottom-Left</label>
+                <label><input type="radio" name="quarter-page-position" value="bottom-right"> Bottom-Right</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload Design Section -->
+    <div class="section">
+        <h3>Upload Existing Design</h3>
+        <label for="ad-design">Upload Ad Design (Image/PDF):</label>
+        <input type="file" id="ad-design" accept="image/*, application/pdf">
+        <div class="upload-message" id="upload-message">No file uploaded.</div>
+    </div>
+
+    <!-- Two-Column Layout -->
+    <div class="two-column-layout">
+        <!-- Left Column: Ad Details -->
+        <div class="ad-details">
+            <h3>Ad Details</h3>
+
+            <!-- Cost Summary -->
+            <div class="cost-summary">
+                <h3>Cost Summary</h3>
+                <p>Base Cost: <span id="base-cost">Rs. 0</span></p>
+                <p>GST (18%): <span id="gst">Rs. 0</span></p>
+                <p>Total: <span id="total-cost">Rs. 0</span></p>
+            </div>
+
+            <!-- Proceed Button -->
+            <a href="{% url 'accounts:pay' %}" class="proceed-button" id="proceed-button">Proceed</a>
+        </div>
+
+        <!-- Right Column: Preview Section -->
+        <div class="preview-section">
+            <h3>Ad Preview</h3>
+            <div class="preview-box" id="ad-preview">
+                <p>No preview available. Upload a design to see the preview.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Retrieve selected dates, ad size, and position from localStorage
+        const selectedDates = JSON.parse(localStorage.getItem('selectedDates'));
+        const adSize = localStorage.getItem('adSize');
+        const adPosition = localStorage.getItem('adPosition');
+
+        // Display the selected dates
+        const selectedDatesDisplay = document.getElementById('selected-dates-display');
+        if (selectedDates && selectedDates.length > 0) {
+            selectedDatesDisplay.textContent = `Selected Dates: ${selectedDates.join(', ')}`;
+        } else {
+            selectedDatesDisplay.textContent = 'No dates selected.';
+        }
+
+        // Display the selected ad size
+        const adSizeDisplay = document.getElementById('ad-size-display');
+        if (adSize) {
+            adSizeDisplay.textContent = `Ad Size: ${adSize}`;
+        } else {
+            adSizeDisplay.textContent = 'No ad size selected.';
+        }
+
+        // Display the selected ad position
+        const adPositionDisplay = document.getElementById('ad-position-display');
+        if (adPosition) {
+            adPositionDisplay.textContent = `Ad Position: ${adPosition}`;
+        } else {
+            adPositionDisplay.textContent = 'No ad position selected.';
+        }
+
+        // Show position options based on ad size
+        const positionOptions = document.getElementById('position-options');
+        const halfPageOptions = document.getElementById('half-page-options');
+        const quarterPageOptions = document.getElementById('quarter-page-options');
+
+        if (adSize === 'Half Page') {
+            positionOptions.style.display = 'block';
+            halfPageOptions.style.display = 'block';
+            quarterPageOptions.style.display = 'none';
+        } else if (adSize === 'Quarter Page') {
+            positionOptions.style.display = 'block';
+            halfPageOptions.style.display = 'none';
+            quarterPageOptions.style.display = 'block';
+        } else {
+            positionOptions.style.display = 'none';
+        }
+
+        // File Upload Handling
+        const adDesignInput = document.getElementById('ad-design');
+        const uploadMessage = document.getElementById('upload-message');
+        const adPreview = document.getElementById('ad-preview');
+
+        adDesignInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                if (file.type.startsWith('image/')) {
+                    // Display image preview
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        adPreview.innerHTML = `<img src="${e.target.result}" alt="Ad Design Preview" style="max-width: 100%; height: auto;">`;
+                        uploadMessage.textContent = "File uploaded successfully!";
+                        uploadMessage.classList.add('success');
+                        uploadMessage.style.display = "block";
+                    };
+                    reader.readAsDataURL(file);
+                } else if (file.type === 'application/pdf') {
+                    // Display PDF preview message
+                    adPreview.innerHTML = `<p>PDF file uploaded. Preview not available.</p>`;
+                    uploadMessage.textContent = "PDF file uploaded successfully!";
+                    uploadMessage.classList.add('success');
+                    uploadMessage.style.display = "block";
+                } else {
+                    // Invalid file type
+                    uploadMessage.textContent = "Invalid file type. Please upload an image or PDF.";
+                    uploadMessage.classList.add('error');
+                    uploadMessage.style.display = "block";
+                }
+            } else {
+                // No file selected
+                uploadMessage.textContent = "No file uploaded.";
+                uploadMessage.classList.remove('success', 'error');
+                uploadMessage.style.display = "block";
+                adPreview.innerHTML = `<p>No preview available. Upload a design to see the preview.</p>`;
+            }
+        });
+
+        // Cost Calculation (if needed)
+        const baseCostDisplay = document.getElementById('base-cost');
+        const gstDisplay = document.getElementById('gst');
+        const totalCostDisplay = document.getElementById('total-cost');
+
+        // Constants
+        const gstRate = 0.18; // GST rate (18%)
+        const baseCost = 5000; // Example base cost for display ads
+
+        // Calculate GST and total cost
+        const gstAmount = baseCost * gstRate;
+        const totalAmount = baseCost + gstAmount;
+
+        // Display the costs
+        baseCostDisplay.textContent = `Rs. ${baseCost.toFixed(2)}`;
+        gstDisplay.textContent = `Rs. ${gstAmount.toFixed(2)}`;
+        totalCostDisplay.textContent = `Rs. ${totalAmount.toFixed(2)}`;
+    });
+</script>
+</body>
+</html>

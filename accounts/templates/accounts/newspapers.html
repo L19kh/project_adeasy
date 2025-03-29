@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newspaper Advertisements</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">   
+     <style>
+        /* General Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #ffffffe3, #fffdfd);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: linear-gradient(135deg, #d32f2f, #b71c1c);
+            color: white;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 1100px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            color: #f0f0f0;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        /* Card Styles */
+        .premium-card {
+            background-color: rgb(249, 238, 238);
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+            border: 2px solid #ece0e2;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .premium-card:hover {
+            border-color: #f6dcdc;
+            box-shadow: 0 8px 16px rgba(83, 80, 80, 0.1);
+            transform: translateY(-5px) scale(1.02);
+        }
+
+        .logo {
+            width: 130px;
+            height: 80px;
+            margin-bottom: 16px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 12px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        p {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 16px;
+        }
+
+        .back-to-home {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #d32f2f;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .back-to-home:hover {
+            color: #b71c1c;
+        }
+
+        .back-to-home i {
+            margin-right: 8px;
+            color: #d32f2f;
+        }
+
+        button {
+            margin-top: auto;
+            width: 100%;
+            background: linear-gradient(135deg, #d32f2f, #b71c1c);
+            color: white;
+            font-weight: 600;
+            padding: 12px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #b71c1c, #d32f2f);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(211, 47, 47, 0.3);
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .footer a {
+            color: #d32f2f;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .footer a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: #d32f2f;
+            bottom: -2px;
+            left: 0;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .footer a:hover::after {
+            transform: scaleX(1);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .header p {
+                font-size: 1rem;
+            }
+
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="{% url 'accounts:States' %}" class="back-to-home">
+            <i class="fas fa-arrow-left"></i> Back
+        </a>
+        <h1>Newspapers Available</h1>
+        <p>Advertise with India's leading newspapers and reach millions of readers.</p>
+    </div>
+
+    <div class="container">
+        <div class="premium-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU33eDdPgmUxRgAI-1R9zwMWU_Q1WNpbeJBA&s" alt="The Hindu Logo" class="logo">
+            <h3>The Hindu</h3>
+            <p>One of the most respected English newspapers in India.</p>
+            <button class="book-btn" onclick="window.location.href='{% url 'accounts:datetoi' %}'">Advertise Here</button>
+        </div>
+        <div class="premium-card">
+            <img src="data:image/png;base64,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" alt="The Times of India Logo" class="logo">
+            <h3>The Times of India</h3>
+            <p>The largest English-language daily newspaper in India.</p>
+            <button class="book-btn" onclick="window.location.href='{% url 'accounts:datetoi' %}'">Advertise Here</button>
+        </div>
+        <div class="premium-card">
+            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBw0PDQ0NDQ4ODQ0PDQ4PDQ0NDxAQDQ0NFhEiFxYRFRMYKCggGCYlHhUWIT0hMSorLjAuFyAzOTMvOSgtLisBCgoKDg0OGxAQGislICU3Ny8rMC0rLS0xLy8wKzctLSsuKys3LS0tLS8vLS0tLSstLS0tNS0tLTcrLS0tNS0tK//AABEIAKUBMgMBEQACEQEDEQH/xAAbAAEAAgMBAQAAAAAAAAAAAAAAAQcDBQYEAv/EAD8QAAEDAQENBAgFAwUAAAAAAAABAgMEEQUGEhMhMTNBUVNzorIVYZLhIjJCUnGBobEHI2KRwRRy0SSC0vDx/8QAGwEBAAIDAQEAAAAAAAAAAAAAAAQFAgMGBwH/xAA1EQEAAQICBgoBBAIDAQEAAAAAAQIDBBESEyExUWEFFTNBUnGRobHhYiKB0fAUwQYy8SQj/9oADAMBAAIRAxEAPwDUVE8mMk9N/rv9t3vFLVVOc7XqVmzb1dP6Y3R3RwY8fJvH+Nx80p4tmpt+GPSDHybx/jcNKeJqbfhj0gx8m8f43DSniam34Y9IMfJvH+Nw0p4mpt+GPSDHybx/jcNKeJqbfhj0gx8m8f43DSniam34Y9IMfJvH+Nw0p4mpt+GPSDHybx/jcNKeJqbfhj0gx8m8f43DSniam34Y9IMfJvH+Nw0p4mpt+GPSDHybx/jcNKeJqbfhj0gx8m8f43DSniam34Y9IMfJvH+Nw0p4mpt+GPSDHybx/jcNKeJqbfhj0gx8m8f43DSniam34Y9IMfJvH+Nw0p4mpt+GPSDHybx/jcNKeJqbfhj0gx8m8f43DSniam34Y9IMfJvH+Nw0p4mpt+GPSDHybx/jcNKeJqbfhj0hOPk3j/G4aU8TU2/DHpBj5N4/xuGlPE1Nvwx6QjHybx/jcNKeJqbfhj0gx8m8f43DSniam34Y9IMfJvH+Nw0p4mpt+GPSE4+TeP8AG4aU8TU2/DHpCMfJvH+Nw0p4mpt+GPSDHybx/jcNKeJqbfhj0gx8m8f43DSniam34Y9IMfJvH+Nw0p4mpt+GPSDHybx/jcNKeJqbfhj0gx8m8f43DSniam34Y9IMfJvH+Nw0p4mpt+GPSDHybx/jcNKeJqbfhj0gx8m8f43DSniam34Y9IMfJvH+Nw0p4mpt+GPSDHybx/jcNKeJqbfhj0hv6SR2Kj9J2jZrXYSaZnKNrnr9unW1bI3z8tBU6STiP6iNVvl0Nns6fKPhjMWwAAAAAAAAAAAAAAAkCAJAAQAAAAAACQIAAAAAAAAAAAAAB0NJoo+GzpJVO6HO4jtavOfloqnSScR/UR6t8r6z2dPlHwxmLYAAAAAAAASBAAAAAkCAAAACZiNsiKAAAAAAABIEAAAAAAAAAAAAB0NJoo+GzpJVO6HO4jtavOfloqnSScR/UR6t8r6z2dPlHwxmLYAAAAAAAAAAAABIEASBABQN9efe4+6E+CtraaOxZ3pr2RtXav0T5EixZ1lXJUdLdJxgrf6f+07v5YL77EulVsa1GMie2GNjUsayNjERERDG/lpzEdzZ0PH/AMduZnOZzmfOZag0rMAAAAAAAAAAAAAAAAAAADoaTRR8NnSSqd0OdxHa1ec/LRVOkk4j+oj1b5X1ns6fKPhjMWwAAAAAAAAAAJAAAAEAAMkEDpHsiZ68j2xs/uctifc+0xpTkwu1xbomurdEZr5uHcyKkp46eFLGsTKvtSPXO9e9VLuiiKKcoeXYnE14m7Nyuds+0cHF/iDehJK99fStV71amPhRPSfYliPZtWyzJrs/eJicPNX6odB0H0vFmIw97ZGeyfPirZCudpE5pAgAAAAAAACQIAAAAAAAAAdDSaKPhs6SVTuhzuI7Wrzn5aKp0knEf1EerfK+s9nT5R8MZi2AAAAAAAAAABIEASBAADJTwPlkZFG1XyPcjWNbnc5VyGVNOlOUNd27Taomuqdkb3ruRL/T19O6WxEhq48ZlRURGyWOW1M+0zt/prjNFxUTiMJXFPfT8xnH8L8jy2LtT5Fy8yjPvfbmofCXCX7XkJPhVVE1GVOVZIksRlR3pqR3fmXXtIt/DRX+qN7oeiOmpw+Vq9to48Pr47lWva5rla5HNc1VRzXIqOa5M6Ki5itmJicpdxRXFVOcTn5IPjIAAAAAAAAAAAAAAAAAOhpNFHw2dJKp3Q53EdrV5z8tFU6STiP6iPVvlfWezp8o+GMxbAAAAAAAAABIEAAAAADOMs1rXgXqLTR/1c7f9VI2xjVz08apm/uXXszbS0w9jQjOd7hOm+lP8mvVW5/RHfxn+OCqponNc9kiWPa5zXoudHotjkX5ldVsqnN29FVFyiKqd07Y+VkXiX6tVI6KsfguaiMp53ZnpZYjHrqXv1/HPOsYjP8ATU5DpnoaqmZxFiNk7ao4c45LEatpMcvm+rA+uSv0vOjrWrNDgxVbUyP9iZE9iT/lqNF6xFcZxvXHRfS9eDq0KttHfHDnCoqullhkfFMx0cjFsexyZUX+fiVdVM0zlLvLF+3eoiuic4ndLEYtwAAAAAAAAAAAAAAAA6Gk0UfDZ0kqndDncR2tXnPy0VTpJOI/qI9W+V9Z7Onyj4YzFsAAAAAAASBAAABIEAAOhvBoGz3Tga9Ec2NHTq1cqKrcyKnxVF+RJw9MVVxmpunr9VnBzo752LtwUsLR57k4e/a8ltVhVNKiMqs72ZmVCfw7v169qRr+HivbTvX/AET01Vhf/wA7u2ju4x9clUzROa58cjVa9rla9j0sc1yalRSumJidruKKqa6YrpnZP7/+O7vKv5WHApa56ui9WKpd60Wxsi6079WvumWMTl+mtzHS3Qelnew0ZT308ecLSiejkRUW1FRFRUW1FTahOchu2S+gOevsvWgr48tkVQ1Pyp2plT9Lk9pO79jTes03I271h0f0ldwdedO2md8f7jhP9lTd1Lmz0szoKhiskTKmtr26nNXWhWV0VUTlL0DCYu1ibestTnHv+7ymEpQfAAAAAAAAAAAAAAB0NJoo+GzpJVO6HO4jtavOfloqnSScR/UR6t8r6z2dPlHwxmLYAAAAAAAASBAAAAA2lybiunhq6p6qymponvdImeSVG+jG352WrsXvN1u1NVMz3QrMZj6bN2izRtrqnLLhHfLNeVdNtLdCnlkVEjdhRSquZrXpZhfJcEyw9ejXEyx6Yws4jCV00742x+y9Ucilq86Q5Mgh8lyt+F58Vc3Gx2RVbUsZJZ6MiamSbfjnT6Gm9Zpube9b9F9K3MHVo1baO+OHOFQVtJLBK+GdixysWxzHZ+5U2p3lXXTNM5S72xet36IrtznE7v4dNebfk+iVsFQqyUirYmt9P3t2t7tWrYsixiJp2VblL0t0LTis7tnZX7Ty5St6jqI5GNkje17HojmPYqK1zV1opZROe2HEV0VUVTTVGUxvZwxae+O4UFdCsM7cqZY5G5JIn2es1f4zKYXLcVxlKVg8bdwlzWWp847pjhKmbv3EnoZ1hmS1FtWOVtuBK3an+NRVXbU25yl6DgMfaxdvTt7++ODWmpPAAAAAAAAAAAAAAdDSaKPhs6SVTuhzuI7Wrzn5aKp0knEf1EerfK+s9nT5R8MZi2AAAAAAAAAAAAAbC9+48lbVMpo8ltrpJNUcSZ3fZPiqG21bmuqIQOkMbThLM3avKI4yuCvvfZ2XLQUzUY1YHNjt3mdHOXars695aTbjVzRDgrOOr/y6cTc27c58uEfspKeF8b3xStVkjFVr2OSxzXbFQp5pmmcpek27lFyiK6JzidztLyb93U+BS1jldT5EjnX1oE1Ndtb9vhmm2MTl+mtzPS/QmszvYeP1d9PHnHCfnuWrFI1yI5qo5qoitVFtRUXMqKT+bjpjKcp7n2oGhvpvZgr4rHpgTttxM6J6TP0rtb3Gu7apuRlKf0f0jdwVelTtid8f3vU1de5U9JMsFQ3BemVrkyskb7zV1oVVy3NE6MvQMJjLOKt6dqfrzbO9K+magfg5ZaVy2yQ25Wqvts2L9/qbbN+be/cg9KdE28ZGlGyvj/K5LlXSgqYWzQSJJG7MqZFRdbVTOipsLOmqKozhwd6zXZrm3cjKY/v7+b2n1qcl+I9z2zXOnfZ6dPZNGutLFsclve1V+hoxNEVW5z7tq26DxFVrGUxG6r9M/v8AxKnCpeiAACQAEAAAAAAAAAOhpNFHw2dJKp3Q53EdrV5z8tFU6STiP6iPVvlfWezp8o+GMxbAAAAAAAEgQAAAALE/CKNltc/20xDP9q4S/f7E/A98uQ/5TVOdqnu2z8LLbmJzlHMX4XoxVzMNtkVW1PQl1PRMzH7U786fRdN6xTcjmtOjOlLmDqynbRO+OHOOfyp66FFLTyvgnY6OVudq7NTkXMqLtKuqiqmcqnfYfE28Rbiuic4n+/8Arorz78ZKFUhmwpaNV9VMr4LfaZtT9P7EixfmjZO5T9LdDUYmNZb2V+0+fNb1FVRzRslie2SN7cJr2La1yFlExMZw4eu3XRVoVxlVG9nUMWru/cKCthWGdtudWPbpIn+81f4zKYXLdNcZSk4PGXcJci5anzjjyU1fFcCooJcXMmEx2imanoSJ/C938FVds1W9+56B0f0jaxdGlTsmN8cPrmXuXwVFBLjIVwmOVMbC5fQlTb3L3n21dm3OfcdIdG2sbRlVsnunvj6ldNwbswVlO2eBVwVtRzXZHxvTO1ybS0oriuM4efYrC3MNcm1c3x7tB+Jd1WQ3Pkht/NqVSNjdastte5e6zJ80NWJryoy4rHoDDTdxlNfdRt9tnuqEqnoKAAAAAAAAAAAAAAdDSaKPhs6SVTuhzuI7Wrzn5aKp0knEf1EerfK+s9nT5R8MZi2AAAAAAAAEgQBIEAdBeRd1KGrwpNBM3FzKmdutr++xbfk5SRhrmhXt3Sp+msBOLsfo/wC1O2P9wuuGdrmtexUc1zUVrmqio5F1opaxteezE0zlMZSyAaO+e9qCviwJEwZGouKnanpxrs707jXdtxcjKU3A4+7g7mlRu744qau1cioo5lgqG2OzsemWOVnvNXX90Kuu3NucpegYPG2sXb1lv944Tze+9W+ee577G2yUznWyQKvMzYv0X6pnYvzbnKdyL0n0TbxtOlur7p/lctybpwVULJ6d+MjcmfMrV1tcmpe4s6a4qjOHBYjD3MPXNu5GUw9ttpk0vHdS5kNVE6CdiSRuTKi50XU5F1Km0+TTFUZS22L9yxXFy3OUx/cp5KVvqvfkufU4ly4cb0V8Emt7LbFRe9NfyXXYVV6zq6tm56H0X0hTjbOlllMbJj+9zofw5umykpbo1EzsGBjofi6XBX0GprVfRN+Fr0KKplTdP4erE4izbtxnVMT+0cflyd3LrTVtQ+omzuyMYi2tiZqYn+daka7cm5VtX2CwVvCWot0fvzl4UNSaAAAAAAAAAAAAAA6Gk0UfDZ0kqndDncR2tXnPy0VTpJOI/qI9W+V9Z7Onyj4YzFsAAAAAAAAAAAAAWAdLeffdLQuSKXClo3LlZ7cK+8zu2t/bvlWMRNGydyi6W6HoxUTct7Lke8cJ/lcVDWxTxslhekkb0ta9q2opZUzFUZw4W5brt1zRXGUxvehT6way7lxIKyF0M7UVM7HJkfG73mrqMLlEVxlKRhcVdw1zWWpyn581M3yXvVFBLgSphxOVcTOnqSJ7q7F7isu2Ztzt3PQOj+kreNozpnKqN8cObHe9d2ooZsbAtrVVMbC5VxcqbF2L3/8Ah8tXZtzsfcfgLWMo0K9k908P7wXNe7d2nrYcbA7KliSRusxkTvdcn86y1ouRcjOHAYvBXcJc1dyPKe6W3QyRXB/i7C1aSnkWzDbUojV12LGtqfRF+RExf/WHQ/8AGq5jE1U90xt/0q7GPwMXhLi0er0Zb6OMsswrNtmQr8+7udrqqdLTy27s+XB8mLYAAAAAAAAAAAAAAAdDSaKPhs6SVTuhzuI7Wrzn5aKp0knEf1EerfK+s9nT5R8MZi2AAAAAAAAAAAAKAAH0ybq9e+We58lrPzIHL+bA5fRd+pux3fr1926zfqtzyVXSXRdvGUZzsq7p/wBeS5rj3Xgq4WzwOR7HZF95jtbXJqVNhaUV01xnS4DEYe5h7k27sZT8845Ngpk0vHdO58NRC6GdiSRv9ZrvoqLqVNp8mmKoylnavV2a4rtzlMf3byU5fbenNQPw24UtI5bGTWZY1XMySzN8df0Ky9Ymic43O86L6XoxlMU1bK47uPOP4am5V0p6SZs9O/AemRdbZG+45NaGqi5NE5wsMXhLWKtzbuRnHxzheF7t1m1dJFUtTBw0XCZbbgPRbHNt+KKW9uuK6dJ5zjcPVhb1Vqru3c47vZWn4kXwNqqhtPCqOhp1cjnotqSTLkWzubmt71IGKuxVOjHc67/j/R9Viib1yNtW7lH249CG6NIACAJAgAAAAAAAAAAAdDSaKPhs6SVTuhzuI7Wrzn5aKp0knEf1EerfK+s9nT5R8MZi2AAAAAAAAACQAACAACwDY3Bu1UUMyTQO2JJE5fy5m7HJ/OdPobbV2bc7EHHdH2cXb0K429098fXJc17l8MFfCksLrHJYksLtJE7YqfZdZa27lNcZw8+xuBu4S5oXI8p7p8m4zmaIw1dNHIx0cjUfG9Fa9jkRWuaqZUVFGWe99pqqoqiqmcpjdPBR199xf6KskhZhLE5EkgVcq4tV9VV12Kip+xU37ehVlD0TonG/5eHi5O+Nk+cfzDZNvkWmuRBRUz/z5sa+Z7F0ETpFsZbqcqfsnyNmu0LUU070Pq3/ACekKr92P005REcZiN/k5VEIsugyD4+pAhAAAABIEAAAAAAAAAOhpNFHw2dJKp3Q53EdrV5z8tFU6STiP6iPVvlfWezp8o+GMxbAAAAAAAACQAEAAAAAAA9VzLoTUszZ6d6skbrztc3W1ya0XYZ0V1UTnCPicLaxFubdyM4/u2Oa4r0764a9lmSKoYlssCrl/uYvtJ9tZa2b1NyObz7pHo27gq9u2md0/wCp5/2HQKuTOblb3Zqq/FmVrqumYnrMp3K/aiOf6PSpXY2f1Q7T/jFuYsV1Tu0viNvy4iwh5umyD4+gAAAAAAAAAAAAAAAAB0NJoo+GzpJVO6HO4jtavOfloqnSScR/UR6t8r6z2dPlHwxmLYAAAAAAAAAJAgCQAEAAJAgDJTVMkMjJoXKyWNcJjk1Kn3MqappnOGq9YovUzRXGcSu6rvihgudHXS5MZDE9kSL6T5HstRif9zIqlvN2KaNKXm9nAXL2J/x6O6cpnhlO9S90roS1M8lRMtr5HWqieq1ESxGp3ImQqblya6tKXomEw1GGtRao3Q8xgkoAASAAgAAAAAAAAAAAAAHQ0mij4bOklU7oc7iO1q85+WiqdJJxH9RHq3yvrPZ0+UfDGYtgAAAAAAAAAAAAAAAAAAIelqWH2N42l3rsvq3xpYsdPBGyKmhVdGxrbLV2qtmc2Xbs15cIV2AwFOGic9tU7ap47e7+72sNSxSBAACQIAAAAAAAAAAAAAAA6Gk0UfDZ0kqndDncR2tXnPy0VTpJOI/qI9W+V9Z7Onyj4YzFsAAAAAAAAAAAAAAAAAAAAkCAAAAAAAAAAAAAAAAAAAAAdDSaKPhs6SVTuhzuI7Wrzn5aKp0knEf1EerfK+s9nT5R8MZi2AAAAAAAAAAAAAAAAAAAAAAEgQAAAAAEgQAAAAAAAAAAAOhpNFHw2dJKp3Q53EdrV5z8vHNcpVe9cZne5fU2r8TCq1tnal2ukcqKY0e6O/l5Pjsld5yeZ81XNs6y/D3+jsld5yeY1XM6y/D3+jsld5yeY1XM6y/D3+jsld5yeY1XM6y/D3+jsld5yeY1XM6y/D3+jsld5yeY1XM6y/D3+jsld5yeY1XM6y/D3+jsld5yeY1PM6yjwe/0dkrvOTzGq5nWX4e/0dkrvOTzGp5nWX4e/wBHZK7zk8xquZ1l+Hv9J7JXecnmNTzOso8Hv9HZK7zk8xqeZ1lHg9/o7JXecnmNTzOsvw9/o7JXecnmNTzOso8Hv9HZK7zk8xqeZ1lHg9/pHZK7zk8xquZ1l+Hv9HZK7zk8xqeZ1lHg9/pPZK7zk8xqeZ1l+Hv9HZK7zk8xqeZ1lHg9/o7JXecnmNVzOsvw9/pHZK7zk8xquZ1l+Hv9J7JXecnmNTzOsvw9/o7JXecnmNTzOso8Hv8ASOyV3nJ5jVczrL8Pf6OyV3nJ5jU8zrKPB7/R2Su85PMarmdZfh7/AEnsld5yeY1XM6y/D3+jsld5yeY1PM6yjwe/0jsld5yeY1PM6y/D3+jsld5yeY1XM6y/D3+jsld5yeY1XM6y/D3+jsld5yeY1XM6y/D3+jsld5yeY1XM6y/D3+jsld5yeY1XM6y/D3+jsld5yeY1XM6y/D3+jsld5yeY1XM6y/D3+m4p6OyNiYVtjGpbZ3Eim3sjao72MzuVTo989/N//9k=" alt="The Indian Express Logo" class="logo">
+            <h3>The Indian Express</h3>
+            <p>A leading English-language daily newspaper in India.</p>
+            <button class="book-btn" onclick="window.location.href='{% url 'accounts:datetoi' %}'">Advertise Here</button>
+        </div>
+        <div class="premium-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqwpIqxJjzQdlkipdpSVUgZol82yPZiNkdjA&s" alt="Hindustan Times Logo" class="logo">
+            <h3>Hindustan Times</h3>
+            <p>One of India's leading English newspapers with wide coverage.</p>
+            <button class="book-btn" onclick="window.location.href='{% url 'accounts:datetoi' %}'">Advertise Here</button>
+            
+        </div>
+    </div>
+</body>
+</html>

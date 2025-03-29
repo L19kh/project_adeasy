@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AD-EASY | Premium Newspaper Advertising Solutions</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&display=swap');
+       
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+       
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+       
+        .gradient-bg {
+            background: linear-gradient(135deg, #f5365c 0%, #ff4040 100%);
+        }
+       
+        .premium-card {
+            box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
+            transition: all 0.3s ease;
+        }
+       
+        .premium-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(50, 50, 93, 0.15), 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+       
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+       
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+       
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+       
+        .custom-shape-divider {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+       
+        .animate-pulse-slow {
+            animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+       
+        .navbar-sticky {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+       
+        .hero-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+   
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navbar -->
+    <nav class="navbar-sticky p-4 flex justify-between items-center sticky top-0 z-50 shadow-md">
+        <div class="flex items-center">
+            <div class="relative">
+                <h1 class="text-4xl font-bold">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-700">AD-EASY</span>
+                </h1>
+                <div class="absolute -bottom-1 w-full h-1 bg-gradient-to-r from-red-500 to-red-700"></div>
+            </div>
+            <p class="ml-4 text-gray-600 hidden md:block">Premium Advertising Solutions</p>
+        </div>
+        <div class="hidden lg:flex items-center space-x-6">
+            <button onclick="openModal('signinModal')" class="text-gray-800 px-4 hover:text-red-600 font-medium transition-colors duration-300">Sign In</button>
+            <button onclick="openModal('signupModal')" class="text-gray-800 px-4 hover:text-red-600 font-medium transition-colors duration-300">Sign Up</button>
+            <a href="#ad-type" class="text-gray-800 px-4 hover:text-red-600 font-medium transition-colors duration-300">Ad-Type</a> <!-- Added Ad-Type link -->
+            <a href="#ad-categories" class="text-gray-800 px-4 hover:text-red-600 font-medium transition-colors duration-300">Ad Categories</a>
+            <a href="#track-ads" class="text-gray-800 px-4 hover:text-red-600 font-medium transition-colors duration-300">Track Ads</a>
+        </div>
+        <div class="lg:hidden">
+            <button onclick="toggleMobileMenu()" class="text-gray-800 hover:text-red-600 transition duration-300">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden lg:hidden glass-effect p-6 animate__animated animate__fadeIn shadow-lg rounded-b-xl">
+        <div class="flex flex-col space-y-4">
+            <button onclick="openModal('signinModal')" class="text-gray-800 hover:text-red-600 font-medium py-2 transition-colors duration-300">Sign In</button>
+            <button onclick="openModal('signupModal')" class="text-gray-800 hover:text-red-600 font-medium py-2 transition-colors duration-300">Sign Up</button>
+            <a href="#ad-type" class="text-gray-800 hover:text-red-600 font-medium py-2 transition-colors duration-300">Ad-Type</a> <!-- Added Ad-Type link -->
+            <a href="#ad-categories" class="text-gray-800 hover:text-red-600 font-medium py-2 transition-colors duration-300">Ad Categories</a>
+            <a href="#track-ads" class="text-gray-800 hover:text-red-600 font-medium py-2 transition-colors duration-300">Track Ads</a>
+        </div>
+    </div>
+    <!-- Sign In Modal -->
+    <div id="signinModal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 backdrop-filter backdrop-blur-sm animate__animated animate__fadeIn">
+        <div class="modal-content bg-white p-8 rounded-2xl shadow-2xl max-w-md w-full animate__animated animate__zoomIn">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-700">Sign In</h2>
+                <button onclick="closeModal('signinModal')" class="text-gray-500 hover:text-red-600 transition duration-300">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <form id="signinForm" class="space-y-5">
+                <div class="relative">
+                    <i class="fas fa-envelope absolute left-4 top-4 text-gray-400"></i>
+                    <input id="signinEmail" class="border border-gray-300 rounded-xl p-4 pl-12 w-full focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent transition duration-300" type="email" placeholder="Email" required>
+                </div>
+                <div class="relative">
+                    <i class="fas fa-lock absolute left-4 top-4 text-gray-400"></i>
+                    <input id="signinPassword" class="border border-gray-300 rounded-xl p-4 pl-12 w-full focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent transition duration-300" type="password" placeholder="Password" required>
+                </div>
+                <div class="flex justify-between items-center">
+                    <label class="flex items-center">
+                        <input type="checkbox" class="mr-2 form-checkbox text-red-600 focus:ring-red-600 h-5 w-5 rounded transition duration-300">
+                        <span class="text-gray-700">Remember me</span>
+                    </label>
+                    <a href="#" class="text-red-600 hover:text-red-800 hover:underline transition duration-300">Forgot Password?</a>
+                </div>
+                <button type="submit" class="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold rounded-xl p-4 shadow-lg transition duration-300 transform hover:translate-y-1">Sign In</button>
+                <div id="signinError" class="text-red-600 text-center hidden"></div>
+            </form>
+            <p class="mt-6 text-center text-gray-700">Don't have an account? <button onclick="switchModal('signinModal', 'signupModal')" class="text-red-600 hover:text-red-800 hover:underline font-medium transition duration-300">Sign Up</button></p>
+        </div>
+    </div>
+
+    <!-- Sign Up Modal -->
+    <div id="signupModal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 backdrop-filter backdrop-blur-sm animate__animated animate__fadeIn">
+        <div class="modal-content bg-white p-8 rounded-2xl shadow-2xl max-w-md w-full animate__animated animate__zoomIn">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-700">Sign Up</h2>
+                <button onclick="closeModal('signupModal')" class="text-gray-500 hover:text-red-600 transition duration-300">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <form id="signupForm" class="space-y-5" novalidate>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="relative">
+                        <i class="fas fa-user absolute left-4 top-4 text-gray-400"></i>
+                        <input id="firstName" class="border border-gray-300 rounded-xl p-4 pl-12 w-full focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent transition duration-300" 
+                               type="text" 
+                               placeholder="First Name" 
+                               required 
+                               pattern="[A-Za-z]{2,}"
+                               title="First name must be at least 2 characters long and contain only letters">
+                        <div class="text-red-500 text-sm mt-1 hidden" id="firstNameError"></div>
+                    </div>
+                    <div class="relative">
+                        <input id="lastName" class="border border-gray-300 rounded-xl p-4 w-full focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent transition duration-300" 
+                               type="text" 
+                               placeholder="Last Name" 
+                               required
+                               pattern="[A-Za-z]{2,}"
+                               title="Last name must be at least 2 characters long and contain only letters">
+                        <div class="text-red-500 text-sm mt-1 hidden" id="lastNameError"></div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <i class="fas fa-envelope absolute left-4 top-4 text-gray-400"></i>
+                    <input id="signupEmail" class="border border-gray-300 rounded-xl p-4 pl-12 w-full focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent transition duration-300" 
+                           type="email" 
+                           placeholder="Email" 
+                           required
+                           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                           title="Please enter a valid email address">
+                    <div class="text-red-500 text-sm mt-1 hidden" id="emailError"></div>
+                </div>
+                <div class="relative">
+                    <i class="fas fa-phone absolute left-4 top-4 text-gray-400"></i>
+                    <input id="phoneNumber" class="border border-gray-300 rounded-xl p-4 pl-12 w-full focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent transition duration-300" 
+                           type="tel" 
+                           placeholder="Phone Number" 
+                           required
+                           pattern="[0-9]{10}"
+                           title="Please enter a valid 10-digit phone number">
+                    <div class="text-red-500 text-sm mt-1 hidden" id="phoneError"></div>
+                </div>
+                <div class="relative">
+                    <i class="fas fa-lock absolute left-4 top-4 text-gray-400"></i>
+                    <input id="signupPassword" class="border border-gray-300 rounded-xl p-4 pl-12 w-full focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent transition duration-300" 
+                           type="password" 
+                           placeholder="Password" 
+                           required
+                           pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+                           title="Password must be at least 8 characters long and include both letters and numbers">
+                    <div class="text-red-500 text-sm mt-1 hidden" id="passwordError"></div>
+                </div>
+                <div class="relative">
+                    <i class="fas fa-lock absolute left-4 top-4 text-gray-400"></i>
+                    <input id="confirmPassword" class="border border-gray-300 rounded-xl p-4 pl-12 w-full focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent transition duration-300" 
+                           type="password" 
+                           placeholder="Confirm Password" 
+                           required>
+                    <div class="text-red-500 text-sm mt-1 hidden" id="confirmPasswordError"></div>
+                </div>
+                <label class="flex items-center">
+                    <input type="checkbox" id="termsAccepted" class="mr-2 form-checkbox text-red-600 focus:ring-red-600 h-5 w-5 rounded transition duration-300" required>
+                    <span class="text-gray-700">I agree to the <a href="#" class="text-red-600 hover:text-red-800 hover:underline transition duration-300">Terms & Conditions</a></span>
+                </label>
+                <button type="submit" class="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold rounded-xl p-4 shadow-lg transition duration-300 transform hover:translate-y-1">Sign Up</button>
+                <div id="signupError" class="text-red-600 text-center hidden"></div>
+            </form>
+            <p class="mt-6 text-center text-gray-700">Already have an account? <button onclick="switchModal('signupModal', 'signinModal')" class="text-red-600 hover:text-red-800 hover:underline font-medium transition duration-300">Sign In</button></p>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="relative py-32 gradient-bg text-white hero-pattern overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-red-600 to-red-800 opacity-80"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 text-center md:text-left mb-12 md:mb-0">
+                    <h2 class="text-6xl font-bold leading-tight animate__animated animate__fadeInUp">Elevate Your <span class="text-yellow-300">Advertising</span> Impact</h2>
+                    <p class="mt-6 text-xl leading-relaxed animate__animated animate__fadeInUp animate__delay-1s">The premium platform for sophisticated newspaper advertising. Reach millions with just a few clicks.</p>
+                    <div class="mt-10 flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-6">
+                        <button onclick="openModal('signupModal')" class="bg-white text-red-600 px-10 py-4 rounded-full font-bold hover:bg-gray-100 transform hover:scale-105 transition duration-300 shadow-xl animate__animated animate__fadeInUp animate__delay-2s">
+                            <i class="fas fa-rocket mr-2"></i> Get Started
+                        </button>
+                        <a href="#how-it-works" class="glass-effect text-white border-2 border-white px-10 py-4 rounded-full font-bold hover:bg-white hover:text-red-600 transform hover:scale-105 transition duration-300 shadow-xl animate__animated animate__fadeInUp animate__delay-2s">
+                            <i class="fas fa-play-circle mr-2"></i> How It Works
+                        </a>
+                    </div>
+                    <div class="mt-12 flex justify-center md:justify-start items-center">
+                        <p class="text-gray-100 mr-4">Trusted by:</p>
+                        <div class="flex space-x-6">
+                            <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-lg animate-pulse-slow">
+                                <i class="fas fa-building text-red-600 text-xl"></i>
+                            </div>
+                            <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-lg animate-pulse-slow" style="animation-delay: 1s;">
+                                <i class="fas fa-hotel text-red-600 text-xl"></i>
+                            </div>
+                            <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-lg animate-pulse-slow" style="animation-delay: 2s;">
+                                <i class="fas fa-store text-red-600 text-xl"></i>
+                            </div>
+                            <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-lg animate-pulse-slow" style="animation-delay: 3s;">
+                                <i class="fas fa-graduation-cap text-red-600 text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="relative">
+                        <div class="absolute -left-8 -top-8 w-64 h-64 bg-red-500 rounded-full filter blur-3xl opacity-20 animate-float"></div>
+                        <div class="absolute -right-8 -bottom-8 w-64 h-64 bg-yellow-500 rounded-full filter blur-3xl opacity-20 animate-float" style="animation-delay: 2s;"></div>
+                        <img src="" alt="Newspaper Advertising" style="opacity: 0.5;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="custom-shape-divider">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="fill-gray-50"></path>
+            </svg>
+        </div>
+    </header>
+                <!-- Ad-Type Section -->
+<section id="ad-type" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-4xl font-bold text-gray-900 mb-4">Ad-Type</h2>
+            <p class="text-xl text-gray-700">Choose the type of ad that best suits your needs.</p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-10">
+            <!-- Text Classified -->
+            <div class="premium-card bg-white p-8 rounded-2xl text-center">
+                <div class="h-48 bg-red-100 rounded-xl flex items-center justify-center mb-6">
+                    <i class="fas fa-align-left text-6xl text-red-600"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Text Classified</h3>
+                <p class="text-gray-700">Simple text-based ads with no images.</p>
+                <a href="#ad-categories" class="mt-6 inline-block text-red-600 hover:text-red-800 hover:underline font-medium">Explore Text Ads</a>
+            </div>
+
+            <!-- Classified Display -->
+            <div class="premium-card bg-white p-8 rounded-2xl text-center">
+                <div class="h-48 bg-red-100 rounded-xl flex items-center justify-center mb-6">
+                    <i class="fas fa-image text-6xl text-red-600"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Classified Display</h3>
+                <p class="text-gray-700">Ads with text and small images.</p>
+                <a href="#ad-categories" class="mt-6 inline-block text-red-600 hover:text-red-800 hover:underline font-medium">Explore Display Ads</a>
+            </div>
+
+            <!-- Display Ads -->
+            <div class="premium-card bg-white p-8 rounded-2xl text-center">
+                <div class="h-48 bg-red-100 rounded-xl flex items-center justify-center mb-6">
+                    <i class="fas fa-newspaper text-6xl text-red-600"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Display Ads</h3>
+                <p class="text-gray-700">Full-page or half-page ads with images.</p>
+                <a href="displaysection.html" class="mt-6 inline-block text-red-600 hover:text-red-800 hover:underline font-medium">Explore Full-Page Ads</a>
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- Ad Categories Section -->
+    <section id="ad-categories" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Ad Categories</h2>
+                <p class="text-xl text-gray-700">Choose from a wide range of ad categories tailored for different needs.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-10">
+                <!-- Matrimonial Ads -->
+                <div class="premium-card bg-white p-8 rounded-2xl">
+                    <div class="h-48 bg-red-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-heart text-6xl text-red-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Matrimonial Ads</h3>
+                    <p class="text-gray-700">Connect with potential life partners through our extensive matrimonial ad network.</p>
+                    <ul class="mt-4 space-y-2">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Bride/Groom Wanted</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Marriage Bureau</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Match Making Services</li>
+                    </ul>
+                    <a href="States.html" data-requires-auth class="mt-6 inline-block text-red-600 hover:text-red-800 hover:underline font-medium">Post Matrimonial Ad</a>
+                </div>
+
+                <!-- Property Ads -->
+            <div class="premium-card bg-white p-8 rounded-2xl">
+                <div class="h-48 bg-red-100 rounded-xl flex items-center justify-center mb-6">
+                    <i class="fas fa-home text-6xl text-red-600"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Property Ads</h3>
+                <p class="text-gray-700">Advertise your real estate properties to reach potential buyers and tenants.</p>
+                <ul class="mt-4 space-y-2">
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Sale/Purchase</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Rental Properties</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Commercial Spaces</li>
+                </ul>
+                <a href="States.html" data-requires-auth class="mt-6 inline-block text-red-600 hover:text-red-800 hover:underline font-medium">Post Property Ad</a>
+            </div>
+
+            <!-- Recruitment Ads -->
+            <div class="premium-card bg-white p-8 rounded-2xl">
+                <div class="h-48 bg-red-100 rounded-xl flex items-center justify-center mb-6">
+                    <i class="fas fa-briefcase text-6xl text-red-600"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Recruitment Ads</h3>
+                <p class="text-gray-700">Find the right candidates for your company through targeted job advertisements.</p>
+                <ul class="mt-4 space-y-2">
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Job Openings</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Walk-in Interviews</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Campus Recruitments</li>
+                </ul>
+                <a href="States.html" data-requires-auth class="mt-6 inline-block text-red-600 hover:text-red-800 hover:underline font-medium">Post Recruitment Ad</a>
+            </div>
+
+            <!-- Business Ads -->
+            <div class="premium-card bg-white p-8 rounded-2xl">
+                <div class="h-48 bg-red-100 rounded-xl flex items-center justify-center mb-6">
+                    <i class="fas fa-building text-6xl text-red-600"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Business Ads</h3>
+                <p class="text-gray-700">Promote your business, products, or services to a wide audience.</p>
+                <ul class="mt-4 space-y-2">
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Product Launches</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Service Promotions</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Business Opportunities</li>
+                </ul>
+                <a href="States.html" data-requires-auth class="mt-6 inline-block text-red-600 hover:text-red-800 hover:underline font-medium">Post Business Ad</a>
+            </div>
+
+            <!-- Personal Ads -->
+            <div class="premium-card bg-white p-8 rounded-2xl">
+                <div class="h-48 bg-red-100 rounded-xl flex items-center justify-center mb-6">
+                    <i class="fas fa-user text-6xl text-red-600"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Personal Ads</h3>
+                <p class="text-gray-700">Place personal announcements, Birthday Wishes, and other personal notices.</p>
+                <ul class="mt-4 space-y-2">
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Announcements</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Birthday Wishes</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Personal Notices</li>
+                </ul>
+                <a href="States.html" data-requires-auth class="mt-6 inline-block text-red-600 hover:text-red-800 hover:underline font-medium">Post Personal Ad</a>
+            </div>
+
+            <!-- Vehicles Ads -->
+            <div class="premium-card bg-white p-8 rounded-2xl">
+                <div class="h-48 bg-red-100 rounded-xl flex items-center justify-center mb-6">
+                    <i class="fas fa-car text-6xl text-red-600"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Vehicle Ads</h3>
+                <p class="text-gray-700">Sell or buy vehicles through our extensive network of newspaper classifieds.</p>
+                <ul class="mt-4 space-y-2">
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Cars & Bikes</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Used Car Dealer</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Vehicle Accessories</li>
+                </ul>
+                <a href="States.html" data-requires-auth class="mt-6 inline-block text-red-600 hover:text-red-800 hover:underline font-medium">Post Vehicle Ad</a>
+            </div>
+
+            <!-- Tenders Ads -->
+            <div class="premium-card bg-white p-8 rounded-2xl">
+                <div class="h-48 bg-red-100 rounded-xl flex items-center justify-center mb-6">
+                    <i class="fas fa-file-contract text-6xl text-red-600"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Tenders Ads</h3>
+                <p class="text-gray-700">Publish tenders and procurement notices for businesses and government organizations.</p>
+                <ul class="mt-4 space-y-2">
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Government Tenders</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Private Tenders</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Procurement Notices</li>
+                </ul>
+                <a href="States.html" data-requires-auth class="mt-6 inline-block text-red-600 hover:text-red-800 hover:underline font-medium">Post Tender Ad</a>
+            </div>
+
+            <!-- Lost of Certificates or Marksheets -->
+            <div class="premium-card bg-white p-8 rounded-2xl">
+                <div class="h-48 bg-red-100 rounded-xl flex items-center justify-center mb-6">
+                    <i class="fas fa-file-alt text-6xl text-red-600"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Lost Certificates/Marksheets</h3>
+                <p class="text-gray-700">Publish notices for lost certificates, marksheets, or important documents.</p>
+                <ul class="mt-4 space-y-2">
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Educational Certificates</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Marksheets</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Important Documents</li>
+                </ul>
+                <a href="States.html" data-requires-auth class="mt-6 inline-block text-red-600 hover:text-red-800 hover:underline font-medium">Post Lost Document Ad</a>
+            </div>
+
+            <!-- Lost and Found -->
+            <div class="premium-card bg-white p-8 rounded-2xl">
+                <div class="h-48 bg-red-100 rounded-xl flex items-center justify-center mb-6">
+                    <i class="fas fa-search text-6xl text-red-600"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Lost and Found</h3>
+                <p class="text-gray-700">Report lost items or found belongings through our network.</p>
+                <ul class="mt-4 space-y-2">
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Lost Items</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Found Items</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Public Notices</li>
+                </ul>
+                <a href="States.html" data-requires-auth class="mt-6 inline-block text-red-600 hover:text-red-800 hover:underline font-medium">Post Lost and Found Ad</a>
+            </div>
+
+            <!-- Change of Name -->
+            <div class="premium-card bg-white p-8 rounded-2xl">
+                <div class="h-48 bg-red-100 rounded-xl flex items-center justify-center mb-6">
+                    <i class="fas fa-signature text-6xl text-red-600"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Change of Name</h3>
+                <p class="text-gray-700">Publish legal notices for change of name in newspapers.</p>
+                <ul class="mt-4 space-y-2">
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Legal Name Change</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Public Notices</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Gazette Notifications</li>
+                </ul>
+                <a href="States.html" data-requires-auth class="mt-6 inline-block text-red-600 hover:text-red-800 hover:underline font-medium">Post Change of Name Ad</a>
+            </div>
+            <!-- Public Notice -->
+            <div class="premium-card bg-white p-8 rounded-2xl">
+                <div class="h-48 bg-red-100 rounded-xl flex items-center justify-center mb-6">
+                    <i class="fas fa-bullhorn text-6xl text-red-600"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Public Notice</h3>
+                <p class="text-gray-700">Publish public notices, legal announcements, and government notifications.</p>
+                <ul class="mt-4 space-y-2">
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Legal Notices</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Government Announcements</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Public Announcements</li>
+                </ul>
+                <a href="States.html" data-requires-auth class="mt-6 inline-block text-red-600 hover:text-red-800 hover:underline font-medium">Post Public Notice</a>
+            </div>
+            <!-- Travel Ads -->
+            <div class="premium-card bg-white p-8 rounded-2xl">
+                <div class="h-48 bg-red-100 rounded-xl flex items-center justify-center mb-6">
+                    <i class="fas fa-plane text-6xl text-red-600"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Travel Ads</h3>
+                <p class="text-gray-700">Promote travel packages, tours, and vacation deals.</p>
+                <ul class="mt-4 space-y-2">
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Tour Packages</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Vacation Deals</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Travel Services</li>
+                </ul>
+                <a href="States.html" data-requires-auth class="mt-6 inline-block text-red-600 hover:text-red-800 hover:underline font-medium">Post Travel Ad</a>
+            </div>
+
+            <!-- To Rent -->
+            <div class="premium-card bg-white p-8 rounded-2xl">
+                <div class="h-48 bg-red-100 rounded-xl flex items-center justify-center mb-6">
+                    <i class="fas fa-key text-6xl text-red-600"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">To Rent</h3>
+                <p class="text-gray-700">Advertise properties, vehicles, or equipment available for rent.</p>
+                <ul class="mt-4 space-y-2">
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Rental Properties</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Vehicle Rentals</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Equipment Rentals</li>
+                </ul>
+                <a href="States.html" data-requires-auth class="mt-6 inline-block text-red-600 hover:text-red-800 hover:underline font-medium">Post Rental Ad</a>
+            </div>
+
+            <!-- Announcement -->
+            <div class="premium-card bg-white p-8 rounded-2xl">
+                <div class="h-48 bg-red-100 rounded-xl flex items-center justify-center mb-6">
+                    <i class="fas fa-bullhorn text-6xl text-red-600"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Announcement</h3>
+                <p class="text-gray-700">Make public announcements for events, achievements, or notices.</p>
+                <ul class="mt-4 space-y-2">
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Event Announcements</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Achievement Notices</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Public Notices</li>
+                </ul>
+                <a href="States.html" data-requires-auth class="mt-6 inline-block text-red-600 hover:text-red-800 hover:underline font-medium">Post Announcement</a>
+            </div>
+
+            <!-- Services -->
+            <div class="premium-card bg-white p-8 rounded-2xl">
+                <div class="h-48 bg-red-100 rounded-xl flex items-center justify-center mb-6">
+                    <i class="fas fa-tools text-6xl text-red-600"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Services</h3>
+                <p class="text-gray-700">Advertise professional services, repairs, and maintenance.</p>
+                <ul class="mt-4 space-y-2">
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Professional Services</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Repair Services</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Maintenance Services</li>
+                </ul>
+                <a href="States.html" data-requires-auth class="mt-6 inline-block text-red-600 hover:text-red-800 hover:underline font-medium">Post Service Ad</a>
+            </div>
+
+            <!-- Retail -->
+            <div class="premium-card bg-white p-8 rounded-2xl">
+                <div class="h-48 bg-red-100 rounded-xl flex items-center justify-center mb-6">
+                    <i class="fas fa-shopping-cart text-6xl text-red-600"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Retail</h3>
+                <p class="text-gray-700">Promote retail products, discounts, and sales.</p>
+                <ul class="mt-4 space-y-2">
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Product Sales</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Discount Offers</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Retail Promotions</li>
+                </ul>
+                <a href="States.html" data-requires-auth class="mt-6 inline-block text-red-600 hover:text-red-800 hover:underline font-medium">Post Retail Ad</a>
+            </div>
+
+            <!-- Obituary -->
+            <div class="premium-card bg-white p-8 rounded-2xl">
+                <div class="h-48 bg-red-100 rounded-xl flex items-center justify-center mb-6">
+                    <i class="fas fa-cross text-6xl text-red-600"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Obituary</h3>
+                <p class="text-gray-700">Publish obituaries and memorial notices.</p>
+                <ul class="mt-4 space-y-2">
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Memorial Notices</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Condolence Messages</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Funeral Announcements</li>
+                </ul>
+                <a href="#States.html" data-requires-auth class="mt-6 inline-block text-red-600 hover:text-red-800 hover:underline font-medium">Post Obituary</a>
+            </div>
+
+            <!-- Marriage Bureau -->
+            <div class="premium-card bg-white p-8 rounded-2xl">
+                <div class="h-48 bg-red-100 rounded-xl flex items-center justify-center mb-6">
+                    <i class="fas fa-handshake text-6xl text-red-600"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Marriage Bureau</h3>
+                <p class="text-gray-700">Connect with marriage bureaus and matchmaking services.</p>
+                <ul class="mt-4 space-y-2">
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Matchmaking Services</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Marriage Proposals</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Wedding Planning</li>
+                </ul>
+                <a href="States.html" data-requires-auth class="mt-6 inline-block text-red-600 hover:text-red-800 hover:underline font-medium">Post Marriage Bureau Ad</a>
+            </div>
+            <!-- Education -->
+            <div class="premium-card bg-white p-8 rounded-2xl">
+                <div class="h-48 bg-red-100 rounded-xl flex items-center justify-center mb-6">
+                    <i class="fas fa-graduation-cap text-6xl text-red-600"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Education</h3>
+                <p class="text-gray-700">Promote educational institutions, courses, and training programs.</p>
+                <ul class="mt-4 space-y-2">
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>School Admissions</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>College Programs</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Online Courses</li>
+                </ul>
+                <a href="States.html" data-requires-auth class="mt-6 inline-block text-red-600 hover:text-red-800 hover:underline font-medium">Post Education Ad</a>
+            </div>
+
+            <!-- Remembrance -->
+            <div class="premium-card bg-white p-8 rounded-2xl">
+                <div class="h-48 bg-red-100 rounded-xl flex items-center justify-center mb-6">
+                    <i class="fas fa-cross text-6xl text-red-600"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Remembrance</h3>
+                <p class="text-gray-700">Publish remembrance notices and memorials.</p>
+                <ul class="mt-4 space-y-2">
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Memorial Notices</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Tribute Messages</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Anniversary Notices</li>
+                </ul>
+                <a href="States.html" data-requires-auth class="mt-6 inline-block text-red-600 hover:text-red-800 hover:underline font-medium">Post Remembrance Ad</a>
+            </div>
+
+            <!-- Astrology -->
+            <div class="premium-card bg-white p-8 rounded-2xl">
+                <div class="h-48 bg-red-100 rounded-xl flex items-center justify-center mb-6">
+                    <i class="fas fa-star text-6xl text-red-600"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Astrology</h3>
+                <p class="text-gray-700">Advertise astrology services, horoscopes, and consultations.</p>
+                <ul class="mt-4 space-y-2">
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Horoscope Readings</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Astrology Consultations</li>
+                    <li><i class="fas fa-check text-green-500 mr-2"></i>Palmistry Services</li>
+                </ul>
+                <a href="States.html" data-requires-auth class="mt-6 inline-block text-red-600 hover:text-red-800 hover:underline font-medium">Post Astrology Ad</a>
+            </div>
+        </section>
+    <!-- How It Works Section(needs change) -->
+    <section id="how-it-works" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">How It Works</h2>
+                <p class="text-xl text-gray-700">A simple 3-step process to get your ads published in top newspapers.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="premium-card bg-white p-8 rounded-2xl text-center">
+                    <div class="w-20 h-20 mx-auto bg-red-100 rounded-full flex items-center justify-center mb-6">
+                        <span class="text-3xl font-bold text-red-600">1</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Choose Ad Category & Newspaper</h3>
+                    <p class="text-gray-700">Select from various ad categories and newspapers based on your target audience.</p>
+                </div>
+                <div class="premium-card bg-white p-8 rounded-2xl text-center">
+                    <div class="w-20 h-20 mx-auto bg-red-100 rounded-full flex items-center justify-center mb-6">
+                        <span class="text-3xl font-bold text-red-600">2</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Create Your Ad</h3>
+                    <p class="text-gray-700">Fill the ad form or upload pre-designed ad images for faster processing.</p>
+                </div>
+                <div class="premium-card bg-white p-8 rounded-2xl text-center">
+                    <div class="w-20 h-20 mx-auto bg-red-100 rounded-full flex items-center justify-center mb-6">
+                        <span class="text-3xl font-bold text-red-600">3</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Pay & Publish</h3>
+                    <p class="text-gray-700">Make secure payment and track your ad status in real-time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Track Ads Section -->
+    <section id="track-ads" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Track Your Ads</h2>
+                <p class="text-xl text-gray-700">Monitor the performance of your ads in real-time.</p>
+            </div>
+            <div class="max-w-3xl mx-auto">
+                <form class="premium-card bg-white p-8 rounded-2xl">
+                    <input class="border border-gray-300 rounded-xl p-4 w-full focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent transition duration-300" type="text" placeholder="Enter Ad ID" required>
+                    <button class="mt-6 w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold rounded-xl p-4 shadow-lg transition duration-300 transform hover:translate-y-1">Track Ad</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <script>
+        // JavaScript for modal and mobile menu functionality
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.remove('hidden');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+        }
+
+        function switchModal(fromModalId, toModalId) {
+            closeModal(fromModalId);
+            openModal(toModalId);
+        }
+
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        }      
+    </script>
+
+<script type="module">
+    // Import Firebase modules
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-auth.js";
+    import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-firestore.js";
+
+    // Your Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyBkV1zj2VQt9eMTlBAUHsb4v34Vj5uuuaw",
+        authDomain: "adeasy-9346b.firebaseapp.com",
+        projectId: "adeasy-9346b",
+        storageBucket: "adeasy-9346b.firebasestorage.app",
+        messagingSenderId: "156272328671",
+        appId: "1:156272328671:web:07e084de514e8e87b94e6a",
+        measurementId: "G-NZPZ3K8DM9"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    // Add popup delay configuration
+    const POPUP_DELAY = 5000; // 5 seconds
+    let popupShown = false;
+    let userScrolled = false;
+
+    // Track user scroll
+    window.addEventListener('scroll', () => {
+        userScrolled = true;
+    });
+
+    // Check if user is engaged
+    function isUserEngaged() {
+        return userScrolled || document.hasFocus();
+    }
+
+    // Show delayed signin popup
+    function showDelayedSigninPopup() {
+        if (!popupShown && isUserEngaged()) {
+            openModal('signinModal');
+            popupShown = true;
+        }
+    }
+
+    // Check authentication and handle category links
+    function handleCategoryClick(event, targetUrl) {
+        event.preventDefault();
+        const user = auth.currentUser;
+        
+        if (user) {
+            // User is signed in, proceed to the target URL
+            window.location.href = targetUrl;
+        } else {
+            // User is not signed in, show sign-in modal
+            openModal('signinModal');
+        }
+    }
+
+    // Event listeners to all category links
+    document.addEventListener('DOMContentLoaded', () => {
+        const categoryLinks = document.querySelectorAll('[data-requires-auth]');
+        categoryLinks.forEach(link => {
+            const targetUrl = link.getAttribute('href');
+            link.addEventListener('click', (e) => handleCategoryClick(e, targetUrl));
+        });
+    });
+
+    // Auth State Observer with delayed popup
+    onAuthStateChanged(auth, async (user) => {
+        if (user) {
+            // User is signed in
+            const userDoc = await getDoc(doc(db, "users", user.uid));
+            if (userDoc.exists()) {
+                const userData = userDoc.data();
+                // Update UI for signed-in state
+                document.querySelectorAll('.auth-signed-out').forEach(el => el.style.display = 'none');
+                document.querySelectorAll('.auth-signed-in').forEach(el => el.style.display = 'block');
+                
+                // Update navbar with user info
+                const navbarRight = document.querySelector('.lg\\:flex.items-center.space-x-6');
+                if (navbarRight) {
+                    navbarRight.innerHTML = `
+                        <span class="text-gray-800 px-4">Welcome, ${userData.firstName}!</span>
+                        <button onclick="handleSignOut()" class="text-gray-800 px-4 hover:text-red-600 font-medium transition-colors duration-300">Sign Out</button>
+                    `;
+                }
+            }
+        } else {
+            // User is signed out
+            document.querySelectorAll('.auth-signed-out').forEach(el => el.style.display = 'block');
+            document.querySelectorAll('.auth-signed-in').forEach(el => el.style.display = 'none');
+            
+            // Set timeout for delayed popup
+            setTimeout(() => {
+                showDelayedSigninPopup();
+            }, POPUP_DELAY);
+        }
+    });
+
+    // Close modal when clicking outside
+    window.addEventListener('click', (e) => {
+        const signinModal = document.getElementById('signinModal');
+        const signupModal = document.getElementById('signupModal');
+        
+        if (e.target === signinModal) {
+            closeModal('signinModal');
+        } else if (e.target === signupModal) {
+            closeModal('signupModal');
+        }
+    });
+
+    // Prevent modal close when clicking inside the modal content
+    document.querySelectorAll('.modal-content').forEach(modal => {
+        modal.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+    });
+
+    // Form validation functions
+    function showError(elementId, message) {
+        const errorDiv = document.getElementById(elementId);
+        errorDiv.textContent = message;
+        errorDiv.classList.remove('hidden');
+    }
+
+    function hideError(elementId) {
+        const errorDiv = document.getElementById(elementId);
+        errorDiv.classList.add('hidden');
+    }
+
+    function validateField(field, errorId) {
+        if (!field.checkValidity()) {
+            showError(errorId, field.title);
+            return false;
+        }
+        hideError(errorId);
+        return true;
+    }
+
+    // Sign Up Form Handler with enhanced validation
+    document.getElementById('signupForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const firstName = document.getElementById('firstName');
+        const lastName = document.getElementById('lastName');
+        const email = document.getElementById('signupEmail');
+        const phone = document.getElementById('phoneNumber');
+        const password = document.getElementById('signupPassword');
+        const confirmPassword = document.getElementById('confirmPassword');
+        const termsAccepted = document.getElementById('termsAccepted');
+        const errorDiv = document.getElementById('signupError');
+
+        // Validate all fields
+        const isFirstNameValid = validateField(firstName, 'firstNameError');
+        const isLastNameValid = validateField(lastName, 'lastNameError');
+        const isEmailValid = validateField(email, 'emailError');
+        const isPhoneValid = validateField(phone, 'phoneError');
+        const isPasswordValid = validateField(password, 'passwordError');
+
+        // Additional password confirmation validation
+        if (password.value !== confirmPassword.value) {
+            showError('confirmPasswordError', 'Passwords do not match');
+            return;
+        }
+        hideError('confirmPasswordError');
+
+        // Terms acceptance validation
+        if (!termsAccepted.checked) {
+            errorDiv.textContent = "Please accept the terms and conditions";
+            errorDiv.classList.remove('hidden');
+            return;
+        }
+
+        // Check if all validations passed
+        if (!isFirstNameValid || !isLastNameValid || !isEmailValid || !isPhoneValid || !isPasswordValid) {
+            return;
+        }
+
+        try {
+            // Create user with email and password
+            const userCredential = await createUserWithEmailAndPassword(auth, email.value, password.value);
+            const user = userCredential.user;
+
+            // Store user data in Firestore
+            await setDoc(doc(db, "users", user.uid), {
+                firstName: firstName.value,
+                lastName: lastName.value,
+                email: email.value,
+                phone: phone.value,
+                createdAt: new Date().toISOString(),
+                termsAccepted: true,
+                lastLogin: new Date().toISOString(),
+                userType: 'customer'
+            });
+
+            // Reset form
+            document.getElementById('signupForm').reset();
+
+            // Close signup modal and show success message
+            closeModal('signupModal');
+            alert('Account created successfully! Please sign in.');
+            
+        } catch (error) {
+            console.error('Error during signup:', error);
+            errorDiv.textContent = error.message;
+            errorDiv.classList.remove('hidden');
+        }
+    });
+
+    // Sign In Form Handler
+    document.getElementById('signinForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const email = document.getElementById('signinEmail').value;
+        const password = document.getElementById('signinPassword').value;
+        const errorDiv = document.getElementById('signinError');
+
+        try {
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
+            
+            // Get user data from Firestore
+            const userDoc = await getDoc(doc(db, "users", user.uid));
+            if (userDoc.exists()) {
+                const userData = userDoc.data();
+                // Store user data in session
+                sessionStorage.setItem('userName', `${userData.firstName} ${userData.lastName}`);
+                sessionStorage.setItem('userEmail', userData.email);
+                sessionStorage.setItem('userId', user.uid);
+
+                // Update last login time
+                await setDoc(doc(db, "users", user.uid), {
+                    ...userData,
+                    lastLogin: new Date().toISOString()
+                });
+            }
+
+            // Close signin modal and show success message
+            closeModal('signinModal');
+            alert('Signed in successfully!');
+            window.location.reload(); // Refresh page to update UI
+            
+        } catch (error) {
+            console.error('Error during signin:', error);
+            errorDiv.textContent = error.message;
+            errorDiv.classList.remove('hidden');
+        }
+    });
+
+    // Sign Out Function
+    window.handleSignOut = async () => {
+        try {
+            await signOut(auth);
+            sessionStorage.clear(); // Clear all session data
+            alert('Signed out successfully!');
+            window.location.reload(); // Refresh page to update UI
+        } catch (error) {
+            console.error('Error signing out:', error);
+            alert('Error signing out: ' + error.message);
+        }
+    };
+
+    // Make functions available globally
+    window.closeModal = closeModal;
+    window.openModal = openModal;
+    window.switchModal = switchModal;
+</script>
+</body>
+</html>
+//Bruv try to use React or something next time, it is better to manage and run the code.

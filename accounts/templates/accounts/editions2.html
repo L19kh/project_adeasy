@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Newspaper Advertisement</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            color: #d32f2f;
+        }
+
+        .back-to-home {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #d32f2f;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .back-to-home:hover {
+            color: #b71c1c;
+        }
+
+        .back-to-home i {
+            margin-right: 8px;
+            color: #d32f2f;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .ad-section {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .total-price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #d32f2f;
+            margin-bottom: 20px;
+        }
+
+        input[type="checkbox"] {
+            transform: scale(1.2);
+        }
+
+        .proceed-button {
+            background-color: #d32f2f;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .proceed-button:hover {
+            background-color: #b71c1c;
+        }
+        .disabled {
+        opacity: 0.5;
+        pointer-events: none;
+        cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <a href="{% url 'accounts:Kerala2' %}" class="back-to-home"><i class="fas fa-arrow-left"></i>Back</a>
+    <div class="container">
+        <h1>Newspaper Advertisement Rates</h1>
+
+        <div class="ad-section">
+            <table>
+                <thead>
+                    <tr>
+                        <th>City</th>
+                        <th>Ad Rates for MAIN PAPER Inner Page B/w</th>
+                        <th>Select</th>
+                        <th>Ad Rates for MAIN PAPER Inner Page Colour</th>
+                        <th>Select</th>
+                        <th>Ad Rates for FRONT PAGE B/w & Color</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- All -->
+                    <tr>
+                        <td>All</td>
+                        <td> / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox all-bw" data-price="0"></td>
+                        <td> / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox all-color" data-price="0"></td>
+                        <td> / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox all-front" data-price="0"></td>
+                    </tr>
+
+                    <!-- Kottayam -->
+                    <tr>
+                        <td>Kottayam</td>
+                        <td>₹ 535 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox bw" data-price="535"></td>
+                        <td>₹ 1015 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox color" data-price="1015"></td>
+                        <td>₹ 1980 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox front" data-price="1980"></td>
+                    </tr>
+
+                    <!-- Kozhikode -->
+                    <tr>
+                        <td>Kozhikode</td>
+                        <td>₹ 370 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox bw" data-price="370"></td>
+                        <td>₹ 705 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox color" data-price="705"></td>
+                        <td>₹ 1375 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox front" data-price="1375"></td>
+                    </tr>
+
+                    <!-- Kochi -->
+                    <tr>
+                        <td>Kochi</td>
+                        <td>₹ 790 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox bw" data-price="790"></td>
+                        <td>₹ 1500 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox color" data-price="1500"></td>
+                        <td>₹ 2925 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox front" data-price="2925"></td>
+                    </tr>
+
+                    <!-- Thiruvananthapuram -->
+                    <tr>
+                        <td>Thiruvananthapuram</td>
+                        <td>₹ 525 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox bw" data-price="525"></td>
+                        <td>₹ 1000 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox color" data-price="1000"></td>
+                        <td>₹ 1950 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox front" data-price="1950"></td>
+                    </tr>
+
+                    <!-- Palakkad -->
+                    <tr>
+                        <td>Palakkad</td>
+                        <td>₹ 330 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox bw" data-price="330"></td>
+                        <td>₹ 625 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox color" data-price="625"></td>
+                        <td>₹ 1220 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox front" data-price="1220"></td>
+                    </tr>
+
+                    <!-- Kannur -->
+                    <tr>
+                        <td>Kannur</td>
+                        <td>₹ 320 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox bw" data-price="320"></td>
+                        <td>₹ 610 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox color" data-price="610"></td>
+                        <td>₹ 1190 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox front" data-price="1190"></td>
+                    </tr>
+
+                    <!-- Kollam -->
+                    <tr>
+                        <td>Kollam</td>
+                        <td>₹ 340 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox bw" data-price="340"></td>
+                        <td>₹ 645 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox color" data-price="645"></td>
+                        <td>₹ 1260 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox front" data-price="1260"></td>
+                    </tr>
+
+                    <!-- Thrissur -->
+                    <tr>
+                        <td>Thrissur</td>
+                        <td>₹ 410 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox bw" data-price="410"></td>
+                        <td>₹ 780 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox color" data-price="780"></td>
+                        <td>₹ 1520 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox front" data-price="1520"></td>
+                    </tr>
+
+                    <!-- Malappuram -->
+                    <tr>
+                        <td>Malappuram</td>
+                        <td>₹ 325 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox bw" data-price="325"></td>
+                        <td>₹ 620 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox color" data-price="620"></td>
+                        <td>₹ 1210 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox front" data-price="1210"></td>
+                    </tr>
+
+                    <!-- Pathanamthitta -->
+                    <tr>
+                        <td>Pathanamthitta</td>
+                        <td>₹ 350 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox bw" data-price="350"></td>
+                        <td>₹ 665 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox color" data-price="665"></td>
+                        <td>₹ 1295 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox front" data-price="1295"></td>
+                    </tr>
+
+                    <!-- Alappuzha -->
+                    <tr>
+                        <td>Alappuzha</td>
+                        <td>₹ 325 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox bw" data-price="325"></td>
+                        <td>₹ 620 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox color" data-price="620"></td>
+                        <td>₹ 1210 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox front" data-price="1210"></td>
+                    </tr>
+
+                    <!-- Mumbai -->
+                    <tr>
+                        <td>Mumbai</td>
+                        <td>₹ 100 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox bw" data-price="100"></td>
+                        <td>₹ 190 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox color" data-price="190"></td>
+                        <td>₹ 370 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox front" data-price="370"></td>
+                    </tr>
+
+                    <!-- Bangalore -->
+                    <tr>
+                        <td>Bangalore</td>
+                        <td>₹ 105 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox bw" data-price="105"></td>
+                        <td>₹ 200 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox color" data-price="200"></td>
+                        <td>₹ 390 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox front" data-price="390"></td>
+                    </tr>
+
+                    <!-- Chennai -->
+                    <tr>
+                        <td>Chennai</td>
+                        <td>₹ 85 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox bw" data-price="85"></td>
+                        <td>₹ 160 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox color" data-price="160"></td>
+                        <td>₹ 310 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox front" data-price="310"></td>
+                    </tr>
+
+                    <!-- Delhi -->
+                    <tr>
+                        <td>Delhi</td>
+                        <td>₹ 95 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox bw" data-price="95"></td>
+                        <td>₹ 180 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox color" data-price="180"></td>
+                        <td>₹ 350 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox front" data-price="350"></td>
+                    </tr>
+
+                    <!-- Mumbai + Bangalore + Chennai + Delhi -->
+                    <tr>
+                        <td>Mumbai + Bangalore + Chennai + Delhi</td>
+                        <td>₹ 320 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox bw" data-price="320"></td>
+                        <td>₹ 610 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox color" data-price="610"></td>
+                        <td>₹ 1190 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox front" data-price="1190"></td>
+                    </tr>
+
+                    <!-- Overseas -->
+                    <tr>
+                        <td>Overseas</td>
+                        <td>₹ 500 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox bw" data-price="500"></td>
+                        <td>₹ 950 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox color" data-price="950"></td>
+                        <td>₹ 1855 / sqcm</td>
+                        <td><input type="checkbox" class="ad-checkbox front" data-price="1855"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="total-price">
+            Total Price: ₹ <span id="total">0</span>
+        </div>
+
+        <!-- Proceed Button -->
+        <button class="proceed-button" onclick="proceed()">Proceed</button>
+    </div>
+
+    <script>
+        
+        // Function to update the total price
+        function updateTotal() {
+            let total = 0;
+            document.querySelectorAll('.ad-checkbox:checked').forEach(checkbox => {
+                total += parseFloat(checkbox.getAttribute('data-price')); // Ensure it's a number
+            });
+            document.getElementById('total').innerText = total.toFixed(2); // Display with 2 decimal places
+            return total; // Return the total cost
+        }
+
+        // Function to lock/unlock checkboxes in the opposite column
+        function lockOppositeColumn(checkbox) {
+            const row = checkbox.closest('tr');
+            const bwCheckbox = row.querySelector('.bw');
+            const colorCheckbox = row.querySelector('.color');
+
+            if (checkbox.classList.contains('bw')) {
+                colorCheckbox.disabled = checkbox.checked;
+            } else if (checkbox.classList.contains('color')) {
+                bwCheckbox.disabled = checkbox.checked;
+            }
+        }
+
+        // Function to handle "All" checkboxes
+        function handleAllCheckboxes() {
+            const allBwCheckbox = document.querySelector('.all-bw');
+            const allColorCheckbox = document.querySelector('.all-color');
+            const allFrontCheckbox = document.querySelector('.all-front');
+
+            // Handle "All B/W" checkbox
+            allBwCheckbox.addEventListener('change', () => {
+                const bwCheckboxes = document.querySelectorAll('.bw');
+                bwCheckboxes.forEach(checkbox => {
+                    checkbox.checked = allBwCheckbox.checked;
+                    lockOppositeColumn(checkbox); // Lock opposite column
+                });
+
+                // Disable "All Colour" checkbox and all colour checkboxes
+                allColorCheckbox.disabled = allBwCheckbox.checked;
+                document.querySelectorAll('.color').forEach(checkbox => {
+                    checkbox.disabled = allBwCheckbox.checked;
+                });
+
+                updateTotal();
+            });
+
+            // Handle "All Colour" checkbox
+            allColorCheckbox.addEventListener('change', () => {
+                const colorCheckboxes = document.querySelectorAll('.color');
+                colorCheckboxes.forEach(checkbox => {
+                    checkbox.checked = allColorCheckbox.checked;
+                    lockOppositeColumn(checkbox); // Lock opposite column
+                });
+
+                // Disable "All B/W" checkbox and all B/W checkboxes
+                allBwCheckbox.disabled = allColorCheckbox.checked;
+                document.querySelectorAll('.bw').forEach(checkbox => {
+                    checkbox.disabled = allColorCheckbox.checked;
+                });
+
+                updateTotal();
+            });
+
+            // Handle "All Front Page" checkbox
+            allFrontCheckbox.addEventListener('change', () => {
+                const frontCheckboxes = document.querySelectorAll('.front');
+                frontCheckboxes.forEach(checkbox => {
+                    checkbox.checked = allFrontCheckbox.checked;
+                });
+
+                updateTotal();
+            });
+        }
+
+        // Add event listeners to all checkboxes
+        document.querySelectorAll('.ad-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                updateTotal();
+                lockOppositeColumn(checkbox);
+            });
+        });
+
+        // Call the function to handle "All" checkboxes
+        handleAllCheckboxes();
+
+        function proceed() {
+        const total = updateTotal(); // Get the total cost
+
+        // Check which column was selected
+        let selectedColumn = '';
+        if (document.querySelectorAll('.ad-checkbox.bw:checked').length > 0 || 
+        document.querySelectorAll('.ad-checkbox.color:checked').length > 0) {
+        selectedColumn = 'innerPage'; // Selected MAIN PAPER Inner Page B/w or Colour
+        } else if (document.querySelectorAll('.ad-checkbox.front:checked').length > 0) {
+        selectedColumn = 'frontPage'; // Selected FRONT PAGE B/w & Color
+        }
+
+        // Store the selected column in localStorage
+        localStorage.setItem('selectedColumn', selectedColumn);
+
+        // Redirect to date2.html with the selected column as a query parameter
+        let redirectUrl = "{% url 'accounts:date2' %}";
+        if (selectedColumn) {
+        redirectUrl += `?selectedColumn=${selectedColumn}`;
+        }
+
+        alert(`Total Price: ₹ ${total}\nProceeding to the next step...`);
+        localStorage.setItem('totalCost', total); // Store total cost in localStorage
+        window.location.href = redirectUrl; // Redirect to the next page
+        }
+        // Function to handle page position selection
+        function handlePagePositionSelection(selectedColumn) {
+        // Store the selected column in localStorage
+        localStorage.setItem('selectedColumn', selectedColumn);
+
+        // Disable the opposite option
+        if (selectedColumn === 'innerPage') {
+        document.getElementById('extra-premium-option').classList.add('disabled');
+        } else if (selectedColumn === 'frontPage') {
+        document.getElementById('inner-page-option').classList.add('disabled');
+        }
+        }
+
+        // Add event listeners to checkboxes to handle page position selection
+        document.querySelectorAll('.ad-checkbox').forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+        if (checkbox.classList.contains('bw') || checkbox.classList.contains('color')) {
+            handlePagePositionSelection('innerPage');
+        } else if (checkbox.classList.contains('front')) {
+            handlePagePositionSelection('frontPage');
+        }
+        });
+        });
+    </script>
+</body>
+</html>

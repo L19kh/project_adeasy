@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <title>Ad Booking</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8f9fa;
+      color: #333333;
+      margin: 0;
+      padding: 20px;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #d32f2f;
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+    }
+
+    .flex-container {
+      display: flex;
+      gap: 30px;
+    }
+
+    .back-to-home {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      color: #d32f2f;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .back-to-home:hover {
+      color: #b71c1c;
+    }
+
+    .back-to-home i {
+      margin-right: 8px;
+      color: #d32f2f;
+    }
+
+    .calendar-container {
+      flex: 1;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 20px;
+      background-color: #ffffff;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .ad-type-container {
+      flex: 1;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 20px;
+      background-color: #ffffff;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      width: 14%;
+      text-align: center;
+      padding: 12px;
+    }
+
+    th {
+      background-color: #d32f2f;
+      color: white;
+      font-weight: 500;
+    }
+
+    td {
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    td:hover {
+      background-color: #f4f4f4;
+    }
+
+    .selected {
+      background-color: #d32f2f;
+      color: white;
+    }
+
+    .ad-type-container h3 {
+      margin-bottom: 20px;
+      color: #d32f2f;
+      font-size: 20px;
+    }
+
+    .ad-type {
+      margin-bottom: 15px;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .ad-type:hover {
+      background-color: #f4f4f4;
+    }
+
+    .ad-type.selected {
+      background-color: #d32f2f;
+      color: white;
+    }
+
+    .proceed-button {
+      display: block;
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      text-align: center;
+      background-color: #d32f2f;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    .proceed-button:hover {
+      background-color: #b71c1c;
+    }
+
+    #selected-dates {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .month-navigation {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .month-navigation button {
+      background-color: #d32f2f;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 20px;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .month-navigation button:hover {
+      background-color: #b71c1c;
+      transform: scale(1.1);
+    }
+
+    .month-navigation button:active {
+      transform: scale(0.9);
+    }
+
+    #current-month-year {
+      font-size: 20px;
+      font-weight: bold;
+      color: #333333;
+    }
+
+    .error-message {
+      color: #d32f2f;
+      font-size: 14px;
+      margin-top: 10px;
+      display: none; /* Hidden by default */
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+    <a href="{% url 'accounts:kerala' %}" class="back-to-home">
+        <i class="fas fa-arrow-left"></i> Back
+    </a>
+  <h2>Ad Booking</h2>
+
+  <div class="flex-container">
+    <!-- Calendar Section -->
+    <div class="calendar-container">
+      <h3>Select Date(s)</h3>
+      <div class="month-navigation">
+        <button id="prev-button" onclick="changeMonth(-1)">←</button> <!-- Previous Month -->
+        <span id="current-month-year"></span>
+        <button id="next-button" onclick="changeMonth(1)">→</button> <!-- Next Month -->
+      </div>
+      <table>
+        <thead>
+        <tr>
+          <th>Su</th>
+          <th>Mo</th>
+          <th>Tu</th>
+          <th>We</th>
+          <th>Th</th>
+          <th>Fr</th>
+          <th>Sa</th>
+        </tr>
+        </thead>
+        <tbody id="calendar-body">
+        <!-- Calendar dates will be dynamically generated -->
+        </tbody>
+      </table>
+      <p id="selected-dates">Selected Date(s): None</p>
+      <div class="error-message" id="date-error">Please select at least one date.</div>
+    </div>
+
+    <!-- Ad Type Selection Section -->
+    <div class="ad-type-container">
+      <h3>Select Ad Type</h3>
+      <div class="ad-type" onclick="selectAdType('text-classified')">
+        <h4>Text Classified</h4>
+        <p>Simple text-based ads with no images.</p>
+      </div>
+      <div class="ad-type" onclick="selectAdType('classified-display')">
+        <h4>Classified Display</h4>
+        <p>Ads with text and small images.</p>
+      </div>
+      <div class="error-message" id="ad-type-error">Please select an ad type.</div>
+    </div>
+  </div>
+
+  <a href="#" class="proceed-button" id="proceed-button">Proceed to Next Step</a>
+</div>
+
+<script>
+  const today = new Date();
+  let currentMonth = today.getMonth();
+  let currentYear = today.getFullYear();
+
+  const calendarBody = document.getElementById("calendar-body");
+  const selectedDatesDiv = document.getElementById("selected-dates");
+  const currentMonthYear = document.getElementById("current-month-year");
+  const prevButton = document.getElementById("prev-button");
+  const nextButton = document.getElementById("next-button");
+  const dateError = document.getElementById("date-error");
+  const adTypeError = document.getElementById("ad-type-error");
+  const proceedButton = document.getElementById("proceed-button");
+
+  let selectedDates = [];
+  let selectedAdType = null; // Track selected ad type
+  const maxMonths = 3; // Restrict to 3 months
+  let monthCounter = 0; // Track how many months ahead the user has navigated
+
+  function generateCalendar(month, year) {
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const firstDay = new Date(year, month, 1).getDay();
+
+    calendarBody.innerHTML = "";
+
+    let row = document.createElement("tr");
+    for (let i = 0; i < firstDay; i++) {
+      row.appendChild(document.createElement("td"));
+    }
+
+    for (let day = 1; day <= daysInMonth; day++) {
+      const cell = document.createElement("td");
+      cell.textContent = day;
+
+      cell.addEventListener("click", () => {
+        const dateKey = `${year}-${month + 1}-${day}`;
+        if (!selectedDates.includes(dateKey)) {
+          selectedDates.push(dateKey);
+          cell.classList.add("selected");
+        } else {
+          selectedDates = selectedDates.filter(d => d !== dateKey);
+          cell.classList.remove("selected");
+        }
+        updateSelectedDates();
+      });
+
+      row.appendChild(cell);
+
+      if ((firstDay + day) % 7 === 0 || day === daysInMonth) {
+        calendarBody.appendChild(row);
+        row = document.createElement("tr");
+      }
+    }
+
+    currentMonthYear.textContent = new Date(year, month).toLocaleString('default', { month: 'long', year: 'numeric' });
+
+    // Disable "Next" button if the user has reached the third month
+    if (monthCounter >= maxMonths - 1) {
+      nextButton.disabled = true;
+    } else {
+      nextButton.disabled = false;
+    }
+
+    // Disable "Previous" button if the user is on the current month
+    if (monthCounter <= 0) {
+      prevButton.disabled = true;
+    } else {
+      prevButton.disabled = false;
+    }
+  }
+
+  function changeMonth(offset) {
+    currentMonth += offset;
+    monthCounter += offset;
+
+    if (currentMonth < 0) {
+      currentMonth = 11;
+      currentYear--;
+    } else if (currentMonth > 11) {
+      currentMonth = 0;
+      currentYear++;
+    }
+
+    generateCalendar(currentMonth, currentYear);
+  }
+
+  function updateSelectedDates() {
+    selectedDatesDiv.textContent = `Selected Date(s): ${selectedDates.length > 0 ? selectedDates.join(", ") : "None"}`;
+  }
+
+  function selectAdType(type) {
+    selectedAdType = type; // Update selected ad type
+    const adTypes = document.querySelectorAll('.ad-type');
+    adTypes.forEach(ad => ad.classList.remove('selected'));
+    document.querySelector(`.ad-type[onclick*="${type}"]`).classList.add('selected');
+  }
+
+  // Validate selections before proceeding
+  proceedButton.addEventListener("click", (e) => {
+    e.preventDefault(); // Prevent default navigation
+
+    if (selectedDates.length === 0) {
+      dateError.style.display = "block"; // Show date error message
+    } else {
+      dateError.style.display = "none"; // Hide date error message
+    }
+
+    if (!selectedAdType) {
+      adTypeError.style.display = "block"; // Show ad type error message
+    } else {
+      adTypeError.style.display = "none"; // Hide ad type error message
+    }
+
+    // If both selections are valid, redirect based on ad type
+    if (selectedDates.length > 0 && selectedAdType) {
+      // Save selections to localStorage
+      localStorage.setItem('selectedDates', JSON.stringify(selectedDates));
+      localStorage.setItem('selectedAdTypeValue', selectedAdType);
+
+      // Redirect based on selected ad type
+      if (selectedAdType === 'text-classified') {
+        window.location.href = "{% url 'accounts:editions' %}";
+      } else if (selectedAdType === 'classified-display') {
+        window.location.href = "{% url 'accounts:classedition' %}";
+      }
+    }
+  });
+
+  // Initial calendar generation
+  generateCalendar(currentMonth, currentYear);
+</script>
+</body>
+</html>
